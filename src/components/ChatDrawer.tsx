@@ -2,6 +2,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, Send, X, Bot, User, CornerDownLeft, Loader2, ArrowRight, RefreshCw } from 'lucide-react';
 import { ChatMessage } from '../types';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ChatDrawerProps {
   isOpen: boolean;
@@ -149,9 +151,30 @@ export default function ChatDrawer({ isOpen, onClose, initialPrompt, setInitialP
                         ? 'bg-primary text-white rounded-tr-none' 
                         : 'bg-white text-on-surface border border-surface-container-high rounded-tl-none shadow-sm'
                     }`}>
-                      {msg.text.split('\n').map((line, lIdx) => (
-                        <p key={lIdx} className={lIdx > 0 ? 'mt-1' : ''}>{line}</p>
-                      ))}
+                      {isUser ? (
+                        msg.text.split('\n').map((line, lIdx) => (
+                          <p key={lIdx} className={lIdx > 0 ? 'mt-1' : ''}>{line}</p>
+                        ))
+                      ) : (
+                        <div className="text-[13px] sm:text-sm">
+                          <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                              p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                              h1: ({node, ...props}) => <h1 className="text-base font-bold mt-4 mb-2 text-primary" {...props} />,
+                              h2: ({node, ...props}) => <h2 className="text-[15px] font-bold mt-3 mb-2 text-primary" {...props} />,
+                              h3: ({node, ...props}) => <h3 className="text-sm font-bold mt-3 mb-1 text-primary" {...props} />,
+                              ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-3 space-y-1" {...props} />,
+                              ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-3 space-y-1" {...props} />,
+                              li: ({node, ...props}) => <li className="mb-0.5" {...props} />,
+                              strong: ({node, ...props}) => <strong className="font-bold text-[#FF6B00]" {...props} />,
+                              a: ({node, ...props}) => <a className="text-[#1657B5] underline hover:text-[#FF6B00] transition-colors" {...props} />
+                            }}
+                          >
+                            {msg.text}
+                          </ReactMarkdown>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 );
