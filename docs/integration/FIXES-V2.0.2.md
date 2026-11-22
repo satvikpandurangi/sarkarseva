@@ -70,7 +70,9 @@ free plan can sleep. Provider budgets are process-local, not distributed or
 per-user quotas. Account restoration, email delivery, load testing and backup
 restoration remain unverified. English synthetic speech was checked live; this
 does not certify every supported language or device microphone. CodeRabbit is
-installed but signed out, so no CodeRabbit review is claimed.
+installed but signed out. The user declined authentication; login was cancelled
+and the review skipped. Its skill was read, but is not an offline review engine.
+No CodeRabbit review is claimed.
 
 References: [Groq compatibility](https://console.groq.com/docs/openai),
 [Groq models](https://console.groq.com/docs/models),

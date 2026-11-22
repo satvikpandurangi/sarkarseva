@@ -64,5 +64,6 @@ Groq extraction and Sarvam TTS/STT are configured server-side and passed hosted
 checks using synthetic English text and audio on 23 November 2026. Public profile
 extraction, review, matching and deletion also passed in a real browser. Account
 authentication/restoration and email delivery remain unverified. CodeRabbit review was additionally
-requested; plugin 1.1.4 is installed and enabled, while CLI authentication is a
-separate pending check. No CodeRabbit review has run yet.
+requested; plugin 1.1.4 is installed and enabled and its skill was read. The user
+declined sign-in on 23 November, so the login was cancelled and the review was
+skipped. The skill cannot replace the authenticated CodeRabbit service.
