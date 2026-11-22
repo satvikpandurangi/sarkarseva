@@ -158,6 +158,13 @@ test("manual profile produces preliminary matches from the real dataset", async 
   await expect(page.locator(".match-card").first()).toContainText(
     "Preliminary",
   );
+  await page.goBack();
+  const deletion = page.waitForResponse(
+    (response) => response.request().method() === "DELETE",
+  );
+  await page.getByRole("button", { name: "Clear my details" }).click();
+  expect((await deletion).status()).toBe(204);
+  await expect(page.getByLabel("Age", { exact: true })).not.toBeVisible();
 });
 
 test("category filter remains selected on a direct link and after reload", async ({
