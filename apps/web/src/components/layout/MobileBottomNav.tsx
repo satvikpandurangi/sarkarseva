@@ -30,7 +30,7 @@ export function MobileBottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-3 inset-x-3 z-40 bg-cream/85 backdrop-blur-2xl border border-white/90 shadow-[0_8px_32px_rgba(16,80,50,0.15)] rounded-2xl px-2 py-1.5 flex items-center justify-around"
+      className="mobile-dock md:hidden fixed bottom-3 inset-x-3 z-40 bg-cream/85 backdrop-blur-2xl border border-white/90 shadow-[0_8px_32px_rgba(16,80,50,0.15)] rounded-2xl px-2 py-1.5 flex items-center justify-around"
       aria-label={m.mobileNav.label}
     >
       {items.map((item) => {
@@ -42,6 +42,7 @@ export function MobileBottomNav() {
           <Link
             key={item.href}
             href={item.href}
+            aria-current={active ? "page" : undefined}
             className={cn(
               "flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-150 min-w-[54px]",
               active

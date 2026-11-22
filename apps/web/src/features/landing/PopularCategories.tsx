@@ -81,9 +81,9 @@ export function PopularCategories() {
             <GlassCard
               variant="standard"
               interactive
-              className="p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#a04100]/30 transition-all flex items-center justify-between gap-2 h-full"
+              className="category-card p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#a04100]/30 transition-all flex items-center justify-between gap-2 h-full"
             >
-              <div className="flex items-center gap-2.5 min-w-0">
+              <div className="category-card-content flex items-center gap-2.5 min-w-0">
                 <div
                   className={`w-9 h-9 rounded-full ${circleBg} flex items-center justify-center shrink-0 shadow-2xs`}
                 >

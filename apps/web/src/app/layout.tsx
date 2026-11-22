@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/dm-sans";
 import "@fontsource-variable/fraunces";
 import "./globals.css";
 import "@/styles/shell.css";
 import "@/styles/navbar.css";
 import "@/styles/sarkarseva.css";
+import "@/styles/mobile.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
@@ -16,6 +17,13 @@ import { getLocale } from "@/i18n/server";
 import { messages } from "@/i18n/messages";
 import { SpeechProvider } from "@/features/speech/SpeechProvider";
 import { AuthProvider } from "@/features/auth/AuthProvider";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#faf9f5",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = messages[await getLocale()];

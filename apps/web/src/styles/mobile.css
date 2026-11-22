@@ -1,0 +1,92 @@
+/* Shared mobile refinements, loaded after page and component styles. */
+:is(a, button, input, select, textarea, summary) {
+  touch-action: manipulation;
+}
+
+.site-drawer {
+  overscroll-behavior: contain;
+}
+.site-drawer-panel {
+  height: auto;
+  min-height: 100%;
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+.site-drawer-panel > * {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1023px) {
+  html {
+    scroll-padding-top: calc(80px + env(safe-area-inset-top));
+    scroll-padding-bottom: 144px;
+  }
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  /* Keep text at readable size on touch devices, including focused iOS fields. */
+  body :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+    font-size: 16px;
+    scroll-margin-block: 96px 144px;
+  }
+  .site-header {
+    height: calc(var(--nav-height) + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+  }
+  .site-header-inner {
+    height: var(--nav-height);
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(128px + env(safe-area-inset-bottom));
+  }
+  .mobile-dock {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    align-items: stretch;
+  }
+  .mobile-dock > a {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 56px;
+    padding-inline: 2px;
+    transform: none;
+  }
+  .mobile-dock > a > span {
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 1023px) {
+  .category-card {
+    position: relative;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .category-card-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .category-card h3,
+  .category-card p {
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+  .category-card h3 {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .category-card > svg {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+  }
+}
