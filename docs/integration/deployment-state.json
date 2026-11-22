@@ -25,13 +25,22 @@
     "workspace_id": "tea-d9iisqv41pts73bb92qg",
     "workspace_confirmed_by_user": true,
     "blueprint_id": "exs-dc1gmglg1s2s73dar6i0",
-    "planning_outcome": "planned",
+    "planning_outcome": "applied after user approval",
     "proposed_service_name": "sarkarseva-v2-api-s7ad",
     "plan": "free",
     "region": "singapore",
     "auto_sync": false,
-    "service_created": false,
-    "approval": "pending user review of returned plan"
+    "service_created": true,
+    "service_id": "srv-dc1goiivcj2c73ehqlf0",
+    "deployment_id": "dep-dc1goiqvcj2c73ehqm50",
+    "status": "live",
+    "commit": "e612d539bcaf4fe20b675c842f8e98c4b409f462",
+    "url": "https://sarkarseva-v2-api-s7ad.onrender.com",
+    "approval": "user approved reviewed plan",
+    "readiness_records": 3397,
+    "cors_origin": "https://sarkarseva-v2.vercel.app",
+    "untrusted_cors_origin_allowed": false,
+    "application_errors_in_release_window": 0
   },
   "vercel": {
     "team_id": "team_iusdRQvZGpU8vaSTpDOY3TVB",
@@ -42,7 +51,17 @@
     "root_directory": "apps/web",
     "framework": "nextjs",
     "git_connected": false,
-    "public_deployment_created": false
+    "public_deployment_created": true,
+    "deployment_id": "dpl_FjojALxqGeBmev6uyCqMDAuJzNv1",
+    "status": "READY",
+    "target": "production",
+    "commit": "56015bc4e155b4e16349f64603c5838d2663e459",
+    "url": "https://sarkarseva-v2.vercel.app",
+    "build_duration_seconds": 59,
+    "public_unauthenticated_http_status": 200,
+    "temporary_verification_bypass_revoked": true,
+    "runtime_errors_in_release_window": 0,
+    "hosted_browser_tests_passed": 10
   },
   "github": {
     "authenticated_user": "satvikpandurangi",
@@ -52,5 +71,6 @@
     "original_main_preserved_at": "1e6d603375aec3242b8ac1c8d363bbfd3d9c3c57"
   },
   "existing_projects_modified": false,
-  "public_deployment_created": false
+  "public_deployment_created": true,
+  "coderabbit_review": "requested; plugin discovery and authentication pending"
 }

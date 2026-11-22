@@ -1,6 +1,8 @@
 # Hosted database handoff
 
-Verified on 22 November 2026. Public frontend/backend hosting remains pending.
+Verified on 22 November 2026. The public [frontend](https://sarkarseva-v2.vercel.app)
+and [backend readiness endpoint](https://sarkarseva-v2-api-s7ad.onrender.com/ready)
+are live. All ten hosted browser checks passed.
 
 ## Project and data
 
@@ -49,6 +51,15 @@ Keep file reads bounded when transferring generated SQL through tools. The first
 
 Verified against hosted PostgreSQL using the restricted login: Alembic startup, import receipt, catalogue/readiness counts, 833 education members, scheme detail, unrelated-question abstention, and synthetic session CRUD inside a rolled-back transaction. Backend tests, Ruff and mypy also passed. A Starlette test-client deprecation warning remains; it did not fail checks.
 
-## Remaining release work
+## Ongoing operations
 
-Publish the prepared code to the separate deployment repository, review the Render plan, configure its server-only connection string and frontend CORS origin, link/deploy the Vercel frontend, then verify the public HTTPS journey. No public deployment has been created yet. Optional provider-backed authentication, voice and AI integrations remain disabled until configured and separately verified.
+The code is published on `sarkarseva-v2` in the original SarkarSeva repository.
+Render uses the restricted server-only connection and the exact production
+frontend CORS origin. Public HTTPS readiness, catalogue filters, abstention,
+checklists, profile matching and deletion, mobile layout and accessibility passed.
+
+Continue source curation, dependency updates and release monitoring. An external
+uptime monitor and a backup-restore exercise were not configured by this release.
+Optional provider-backed authentication, voice and AI integrations remain disabled
+until configured and separately verified. CodeRabbit review was additionally
+requested; its authentication/setup is a separate pending check.

@@ -6,6 +6,10 @@ Search 3,397 imported scheme records without an AI key or account; read original
 requirements, save records and prepare document checklists. English, Hindi and
 Kannada navigation is available; original dataset records remain in English.
 
+**Live website:** [sarkarseva-v2.vercel.app](https://sarkarseva-v2.vercel.app).
+The public HTTPS release passed all ten hosted browser checks. See
+[deployment status](docs/integration/deployment-state.json) for the deployed commits.
+
 **Imported records are unverified, from a July 2025 dataset.** They are discovery
 leads, not current official policy or eligibility decisions. There is no government
 affiliation, application submission, approval prediction or simulated tracking.
@@ -65,7 +69,10 @@ See [provenance and attribution](docs/integration/DATA_PROVENANCE.md) and
 Deployment targets are Vercel (root `apps/web`) and Render (root `services/api`),
 with PostgreSQL/pgvector. The dedicated Supabase database contains all 3,397
 records, checked against the complete pinned source. Restricted-role API checks
-passed. Public frontend and backend deployment remains pending.
+passed. The Vercel frontend and Render backend are live; hosted browser checks
+cover search, saved checklists, manual matching, session deletion, mobile layouts
+and accessibility. The dependency audit reports zero findings after the release
+patches to Next.js 16.4.6 and Zod 4.6.7.
 
 The updated version is maintained on `sarkarseva-v2` in the original SarkarSeva
 repository. Its existing `main` version remains available. See the

@@ -1,12 +1,13 @@
 {
   "checked_on": "2026-11-22",
-  "status": "local_implementation_verified_awaiting_hosted_release",
+  "status": "core_public_https_release_verified",
   "backend": { "passed": 438, "skipped": 2, "ruff": "passed", "mypy": "passed" },
-  "frontend": { "unit_passed": 48, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed" },
+  "frontend": { "unit_passed": 48, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed", "next_version": "16.4.6", "zod_version": "4.6.7", "npm_audit_findings": 0 },
   "browser": {
     "inherited_fixture_suite": { "passed": 44, "skipped": 1 },
     "live_sqlite_integration": { "passed": 10, "skipped": 0 },
     "optimized_production_frontend_with_live_sqlite_api": { "passed": 10, "skipped": 0 },
+    "public_https_with_hosted_postgresql": { "passed": 10, "skipped": 0, "duration_seconds": 78 },
     "public_accessibility_widths_px": [320, 1280],
     "inherited_journey_widths_px": [320, 375, 390, 768, 1024, 1280, 1440]
   },
@@ -18,12 +19,12 @@
   },
   "review": { "independent_reviews": 1, "critical_findings_fixed": 1, "important_findings_fixed": 5, "deferred_minors": 0 },
   "not_verified": [
-    "Hosted PostgreSQL migrations and runtime",
-    "Vercel and Render deployment, HTTPS, CORS and operational behavior",
+    "CodeRabbit review: requested, plugin/authentication setup pending",
+    "External uptime monitoring, load testing and backup restore exercise",
     "Live Supabase authentication and account restoration",
     "Live model, voice and email providers",
     "Current official policy, eligibility, application links and deadlines for imported records"
   ],
-  "remote_repositories_modified": false,
-  "deployment_created": false
+  "remote_repositories_modified": true,
+  "deployment_created": true
 }

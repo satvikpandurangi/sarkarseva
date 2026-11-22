@@ -30,15 +30,21 @@ version are retained; no force push is needed. The repository layout for v2 is
 - Initial Blueprint application requires approval of Render's reviewed plan.
   Automatic backend deploys are disabled for the first release.
 
-The Vercel project is created and its root/framework settings are verified. Render
-has validated the proposed new free service as `sarkarseva-v2-api-s7ad`. Review the
-[Render deployment plan](https://dashboard.render.com/blueprint/exs-dc1gmglg1s2s73dar6i0/sync/exe-dc1gmhdg1s2s73daran0)
-before applying it. Public deployments have not started.
+The user approved the reviewed Render plan, and `sarkarseva-v2-api-s7ad` is live.
+The production frontend is [sarkarseva-v2.vercel.app](https://sarkarseva-v2.vercel.app).
+All ten hosted browser checks passed. The backend reports 3,397 records, permits
+the exact production frontend origin and rejects unrelated browser origins.
+
+Before public promotion, the release patched Next.js to 16.4.6, Zod to 4.6.7 and
+affected lint dependencies. The resulting dependency audit reports zero findings.
+Frontend lint, type checking and all 48 active unit tests passed; five optional
+provider checks remain skipped. A temporary staged-verification token was revoked.
 
 ## Release limits
 
 The imported July 2025 records are unverified reference material. They are not
 current official eligibility decisions. Optional AI, voice, account restoration
 and email-provider integrations require separate configuration and verification.
-Public HTTPS hosting must pass end-to-end checks before this release is described
-as live or production-verified.
+The core public HTTPS journeys passed end-to-end checks; this does not certify
+optional providers, current policy accuracy or unlimited availability. CodeRabbit
+review is additionally requested and awaits its plugin/authentication setup.
