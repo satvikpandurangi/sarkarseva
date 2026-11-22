@@ -19,6 +19,35 @@ import question from "./fixtures/question-next.response.json";
 import schemes from "./fixtures/schemes-list.response.json";
 import { safeOfficialUrl } from "@/components/ui";
 describe("contract boundary", () => {
+  it("allows cold-start speech synthesis without retrying a paid request", async () => {
+    vi.useFakeTimers();
+    try {
+      const sender = vi.fn<typeof fetch>(
+        (_input, init) =>
+          new Promise((resolve, reject) => {
+            init?.signal?.addEventListener("abort", () =>
+              reject(new DOMException("aborted", "AbortError")),
+            );
+            setTimeout(
+              () =>
+                resolve(new Response(new Blob(["wav"], { type: "audio/wav" }))),
+              50_000,
+            );
+          }),
+      );
+      const outcome = createLiveApi("https://api.test", sender)
+        .synthesize("hello", "en-IN")
+        .then(
+          (value) => ({ value }),
+          (error) => ({ error }),
+        );
+      await vi.advanceTimersByTimeAsync(51_000);
+      expect(await outcome).toMatchObject({ value: { size: 3 } });
+      expect(sender).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
   it("cancels an in-flight transcription without retrying the audio upload", async () => {
     const control = new AbortController();
     const sender = vi.fn<typeof fetch>(

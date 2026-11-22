@@ -15,7 +15,7 @@
 
 ## Changes
 
-- Bounded 60-second request/body deadlines; at most one retry for safe reads.
+- Bounded 60-second request/body deadlines (120 seconds for voice); at most one retry for safe reads.
   Mutations and audio uploads are never automatically retried.
 - Discover now searches the imported catalogue with working category shortcuts,
   government-level filtering, record counts and links. Unverified labels remain.
@@ -34,25 +34,25 @@
 ## Verification
 
 - Backend: 443 passed, two optional checks skipped; Ruff and mypy passed.
-- Frontend: 51 unit tests passed, five optional checks skipped; type checking passed.
+- Frontend: 52 unit tests passed, five optional checks skipped; type checking passed.
 - Thirteen local browser checks passed, including catalogue discovery, unavailable
   voice, cancelling a synthetic stalled transcription, checklists, matching,
   session deletion, responsive layouts and accessibility.
 - Hosted deployment verification is recorded separately in `deployment-state.json`.
 
-## Provider account dependency
+## Actual provider validation
 
-Groq and Sarvam dashboards require sign-in and acceptance of their displayed
-service terms. Neither key was present in the backend configuration during local
-verification. The user must finish those account steps and provide the keys in
-the ignored backend `.env.production` or the dedicated Render service's
-environment settings. Do not place keys in chat, Git, or `NEXT_PUBLIC_*` values.
+The user supplied both keys through the ignored backend `.env.production`.
+Actual Sarvam text-to-speech and speech-to-text passed using synthetic speech.
+Actual Groq extraction returned validated draft facts for synthetic text.
+Groq's model endpoint rejected Python's default User-Agent with HTTP 403 and
+succeeded with the explicit application User-Agent; the application now sets that
+header, covered by a regression. Do not place keys in chat, Git or `NEXT_PUBLIC_*`.
 
-Once actual keys are available, merge only the relevant server variables into
-the existing Render service, redeploy it, and test actual extraction and a short
-synthetic TTS/STT round trip. Public capability flags then update at runtime; no
-frontend key or rebuild is required. Provider-call success is not certified by
-the mocked transport tests.
+Hosted verification follows merging only provider-specific server variables into
+the existing Render service. Public capability flags update at runtime; no
+frontend key is used. The live-deployment result is recorded separately from
+local provider tests in `deployment-state.json`.
 
 References: [Groq compatibility](https://console.groq.com/docs/openai),
 [Groq models](https://console.groq.com/docs/models),

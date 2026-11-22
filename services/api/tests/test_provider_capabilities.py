@@ -49,6 +49,7 @@ def test_groq_extracts_only_evidenced_draft_facts(monkeypatch) -> None:
         assert result.needs_review is True
         assert sent[0].full_url == "https://api.groq.com/openai/v1/chat/completions"
         assert sent[0].get_header("Authorization") == "Bearer test-groq-key"
+        assert sent[0].get_header("User-agent") == "SarkarSeva/2.0"
     finally:
         gemini.get_extractor.cache_clear()
 

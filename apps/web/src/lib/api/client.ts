@@ -166,6 +166,7 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
             signal,
             cache: "no-store",
           },
+          120_000,
         );
         if (!response.ok) throw await publicError(response);
         const data: unknown = await response.json();
@@ -191,20 +192,25 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
       target_language_code: SpeechLanguage,
       source_language_code: SpeechLanguage = "en-IN",
     ) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 45_000);
       try {
-        const response = await fetcher(endpoint("/speech/synthesize"), {
-          method: "POST",
-          headers: { Accept: "audio/wav", "Content-Type": "application/json" },
-          body: JSON.stringify({
-            text,
-            source_language_code,
-            target_language_code,
-          }),
-          signal: controller.signal,
-          cache: "no-store",
-        });
+        const response = await fetchWithRecovery(
+          fetcher,
+          endpoint("/speech/synthesize"),
+          {
+            method: "POST",
+            headers: {
+              Accept: "audio/wav",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              text,
+              source_language_code,
+              target_language_code,
+            }),
+            cache: "no-store",
+          },
+          120_000,
+        );
         if (!response.ok) throw await publicError(response);
         const audio = await response.blob();
         if (!audio.size)
@@ -219,8 +225,6 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
           "NETWORK_ERROR",
           "We couldn’t reach the voice service.",
         );
-      } finally {
-        clearTimeout(timer);
       }
     },
     createSession: () => request("/profiles/sessions", sessionSchema, {}),

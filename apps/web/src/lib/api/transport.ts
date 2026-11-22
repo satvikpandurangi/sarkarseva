@@ -3,6 +3,7 @@ export async function fetchWithRecovery(
   fetcher: typeof fetch,
   input: RequestInfo | URL,
   init: RequestInit = {},
+  timeoutMs = 60_000,
 ): Promise<Response> {
   const read = (init.method ?? "GET").toUpperCase() === "GET";
   for (let attempt = 0; ; attempt++) {
@@ -14,7 +15,7 @@ export async function fetchWithRecovery(
     const timer = setTimeout(() => {
       timedOut = true;
       controller.abort();
-    }, 60_000);
+    }, timeoutMs);
     try {
       const response = await fetcher(input, {
         ...init,

@@ -151,6 +151,8 @@ class GeminiExtractor:
             headers={
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + settings.api_key.get_secret_value(),
+                "User-Agent": "SarkarSeva/2.0",
+                "Accept": "application/json",
             },
         )
         try:
