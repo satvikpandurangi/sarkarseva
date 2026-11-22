@@ -83,7 +83,7 @@ def test_migrations_form_a_single_linear_head() -> None:
     config = Config(str(Path(__file__).parents[1] / "alembic.ini"))
     config.set_main_option("script_location", str(Path(__file__).parents[1] / "migrations"))
 
-    assert ScriptDirectory.from_config(config).get_heads() == ["20261009_0005"]
+    assert ScriptDirectory.from_config(config).get_heads() == ["20261122_0006"]
 
 
 def test_staging_table_enables_row_level_security() -> None:

@@ -20,7 +20,7 @@ Updated 22 November 2026. Local implementation and production-build checks are c
 - Live integration suite: all 10 passed against the real imported SQLite dataset.
 - Optimized production frontend: build passed; all 10 integration checks passed against `next start`.
 - Accessibility and overflow checks include new public pages at 320px and 1280px, and inherited full journeys across 320–1440px.
-- PostgreSQL migration SQL was generated successfully; a real hosted PostgreSQL migration was not run.
+- Hosted Supabase PostgreSQL schema is migrated through `20261122_0006`. TLS connection and Alembic startup were checked using the restricted backend role.
 - Pinned version-1 Kaggle download was independently fetched and its original CSV digest validated.
 - Live `/ready` reported 3,397 records. Education filter returned all 833 primary/secondary members. A natural unrelated question returned no passages.
 - One observed local search request returned 24 records in 0.391 seconds; this is a smoke measurement, not a load test or service-level promise.
@@ -43,6 +43,8 @@ One fresh read-only reviewer identified one critical and five important findings
 - Ruling: retain the existing checkout on a feature branch; a further worktree would add no isolation to this fresh, separate workspace.
 - Ruling: ordinary search and manual matching are the default; optional paid AI/voice features require provider configuration, quotas and hosted verification.
 - Ruling: imported July 2025 policy remains explicitly unverified. It is reference material, not authoritative current eligibility guidance. Source curation and independent publication review remain necessary before claiming verified coverage.
-- Hosted PostgreSQL, Vercel and Render are unverified because their accounts are not connected. GitHub CLI reports an expired login for satvikpandurangi. No original remote repository has been modified.
+- Supabase is connected; all 3,397 records and versions are imported. Every record's complete source metadata and content matched the pinned dataset, with no missing or mismatched records. The runtime role can read permitted scheme data and manage temporary sessions, but cannot change schemes, write audit records, read staging or create schema objects. Synthetic session CRUD passed in a rolled-back transaction; anonymous roles see no scheme/profile rows.
+- API checks against hosted PostgreSQL passed: readiness and catalogue count 3,397; Education & Learning membership 833; scheme detail; unrelated-question abstention. The import receipt prevents startup downloads or scheme writes. The schema startup command succeeds with the restricted role.
+- Vercel and Render have not been deployed. Vercel CLI authentication succeeded, while the connector still returns a workspace 403. At the user's request, the release target is now `sarkarseva-v2` in `https://github.com/satvikpandurangi/sarkarseva`. The existing `main` version is preserved; the separate empty repository will not be used.
 - Live authentication, model/voice and Apps Script email integration are not certified by fixture tests; leave these optional services disabled until configured and separately checked.
 - The fix pass was verified by the implementing agent; no second independent review was requested, following the execution skill's single-review workflow.

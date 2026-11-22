@@ -83,11 +83,10 @@ isolated configuration.
 
 ## Deployment sequence
 
-1. Authenticate the intended GitHub account and publish this completed integration
-   to a repository you control. Do not deploy the unchanged upstream `main` branch.
-   This checkout is on `feat/sarkarseva-integration`; `render.yaml` currently names
-   `main`, so either publish the completed code as your deployment repository's
-   main branch or select the integration branch in Render before deploying.
+1. Publish the completed integration to `sarkarseva-v2` in
+   `satvikpandurangi/sarkarseva`. Preserve the existing `main` version and history.
+   `render.yaml` explicitly selects `sarkarseva-v2` and disables automatic backend
+   deploys for the initial release.
 2. Connect a PostgreSQL project (Supabase or Neon) with pgvector support. Create a
    fresh database/schema or snapshot an existing database before migrations.
    Use the server connection string with the `postgresql+psycopg://` driver and TLS
@@ -96,7 +95,10 @@ isolated configuration.
    supported by Render's network rather than assuming direct IPv6 connectivity.
 3. Connect Render to that repository and use `render.yaml`. Required secrets are
    `DATABASE_URL` and exact comma-separated `ALLOWED_ORIGINS`. Start runs migrations,
-   the pinned dataset import if incomplete, then Uvicorn. `/ready` requires a
+   the pinned dataset import if incomplete, then Uvicorn. The prepared hosted
+   database already has the completed import receipt. The runtime login cannot
+   write schemes or apply new migrations: apply future schema/data changes
+   administratively before deploying. `/ready` requires a
    connected, populated catalogue. `/health` only checks process liveness. The raw
    CSV is downloaded only when needed; records live in PostgreSQL. A failed digest,
    migration or import stops startup instead of serving fabricated data.

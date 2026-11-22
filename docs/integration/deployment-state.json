@@ -1,0 +1,29 @@
+{
+  "updated_on": "2026-11-22",
+  "supabase": {
+    "organization_id": "jxkptunlcuubhoyxnezv",
+    "project_id": "alsqodvrsefjlinstzth",
+    "project_name": "SarkarSeva",
+    "region": "ap-south-1",
+    "quoted_monthly_cost": 0,
+    "schema_head": "20261122_0006",
+    "scheme_data_import": "complete: 3397 records; full source comparison passed",
+    "runtime_connection": "TLS session pooler verified with restricted sarkarseva_api role",
+    "runtime_role": "sarkarseva_api",
+    "pooler_host": "aws-1-ap-south-1.pooler.supabase.com",
+    "pooler_port": 5432,
+    "permissions_verified": {
+      "scheme_reads": true,
+      "scheme_writes": false,
+      "audit_writes": false,
+      "staging_reads": false,
+      "schema_create": false,
+      "temporary_session_crud": true
+    }
+  },
+  "render": { "workspace_id": "tea-d9iisqv41pts73bb92qg", "workspace_confirmed_by_user": true, "service_created": false },
+  "vercel": { "team_id": "team_iusdRQvZGpU8vaSTpDOY3TVB", "scope": "satvikpandurangis-projects", "access": "workspace API still returns 403 after user reported authorizing consent" },
+  "github": { "authenticated_user": "satvikpandurangi", "authentication": "reauthorized", "deployment_repository": "https://github.com/satvikpandurangi/sarkarseva", "release_branch": "sarkarseva-v2", "code_pushed": false },
+  "existing_projects_modified": false,
+  "public_deployment_created": false
+}

@@ -1,4 +1,4 @@
-# SarkarSeva
+# SarkarSeva v2
 
 An independent government-scheme reference and preparation app: SarkarSeva's
 cream/navy/saffron design with Yojana Saathi's profile, matching and curation API.
@@ -63,5 +63,11 @@ See [provenance and attribution](docs/integration/DATA_PROVENANCE.md) and
 [integration progress](docs/integration/PROGRESS.md).
 
 Deployment targets are Vercel (root `apps/web`) and Render (root `services/api`),
-with PostgreSQL/pgvector. No account or hosted database has been connected in this
-checkout; local verification is not proof of a production deployment.
+with PostgreSQL/pgvector. The dedicated Supabase database contains all 3,397
+records, checked against the complete pinned source. Restricted-role API checks
+passed. Public frontend and backend deployment remains pending.
+
+The updated version is maintained on `sarkarseva-v2` in the original SarkarSeva
+repository. Its existing `main` version remains available. See the
+[v2 release notes](docs/integration/RELEASE-V2.md) and
+[hosted database handoff](docs/integration/HOSTED-DATABASE.md).

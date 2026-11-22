@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: sarkarseva-api
+    name: sarkarseva-v2-api
     runtime: python
     plan: free
     region: singapore
-    branch: main
+    branch: sarkarseva-v2
     rootDir: services/api
     buildCommand: pip install -r requirements.lock && pip install --no-deps .
     startCommand: alembic upgrade head && python -m app.cli.prepare_catalogue && uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
     healthCheckPath: /ready
-    autoDeployTrigger: commit
+    autoDeployTrigger: 'off'
     envVars:
       - key: PYTHON_VERSION
         value: "3.12.14"
@@ -23,25 +23,3 @@ services:
         value: INFO
       - key: SESSION_TTL_HOURS
         value: "24"
-      - key: GEMINI_API_KEY
-        sync: false
-      - key: GEMINI_MODEL
-        value: gemini-flash-lite-latest
-      - key: GEMINI_EMBEDDING_MODEL
-        value: gemini-embedding-001
-      - key: SARVAM_API_KEY
-        sync: false
-      - key: SARVAM_STT_MODEL
-        value: saaras:v4
-      - key: SARVAM_TTS_MODEL
-        value: bulbul:v4-flash
-      - key: SARVAM_TRANSLATION_MODEL
-        value: sarvam-translate:v1
-      - key: SARVAM_CHAT_MODEL
-        value: sarvam-105b-conversations
-      - key: GAS_WEB_APP_URL
-        sync: false
-      - key: GAS_SHARED_SECRET
-        sync: false
-      - key: VERIFICATION_STATE_SECRET
-        sync: false
