@@ -9,6 +9,7 @@ artifacts/
 **/node_modules/
 **/.next/
 **/.next-mock/
+**/.next-recovery/
 **/test-results/
 **/playwright-report/
 **/*.log

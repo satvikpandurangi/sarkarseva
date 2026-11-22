@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { containsReservedSource } from "@/lib/urls";
 import { en, type Messages } from "@/i18n/messages/en";
+import { fetchWithRecovery } from "./transport";
 import {
   answerSchema,
   detailSchema,
@@ -85,17 +86,14 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
     body?: unknown,
     method?: string,
   ): Promise<T> {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 20_000);
     try {
-      const response = await fetcher(endpoint(path), {
+      const response = await fetchWithRecovery(fetcher, endpoint(path), {
         method: method ?? (body === undefined ? "GET" : "POST"),
         headers: {
           Accept: "application/json",
           ...(body === undefined ? {} : { "Content-Type": "application/json" }),
         },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }),
-        signal: controller.signal,
         cache: "no-store",
       });
       if (response.status === 204) return schema.parse(undefined);
@@ -126,24 +124,35 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
       return parsed.data;
     } catch (e) {
       if (e instanceof ApiError) throw e;
+      if (e instanceof Error && e.name === "TimeoutError")
+        throw new ApiError(
+          "SERVICE_TIMEOUT",
+          "The service is taking longer to start. Please try again; your details are still here.",
+        );
       throw new ApiError(
         "NETWORK_ERROR",
         "We couldn’t reach the service. Check your connection and try again.",
       );
-    } finally {
-      clearTimeout(timer);
     }
   }
   return {
+    capabilities: () =>
+      request(
+        "/capabilities",
+        z.object({ speech: z.boolean(), profile_extraction: z.boolean() }),
+      ),
     extract: (text: string, locale: SpeechLanguage = "en-IN") =>
       request("/profiles/extract", extractSchema, { text, locale }),
-    async transcribe(audio: Blob, language: SpeechLanguage) {
+    async transcribe(
+      audio: Blob,
+      language: SpeechLanguage,
+      signal?: AbortSignal,
+    ) {
       if (!audio.size)
         throw new ApiError("EMPTY_AUDIO", "No speech was recorded.", 422);
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 45_000);
       try {
-        const response = await fetcher(
+        const response = await fetchWithRecovery(
+          fetcher,
           endpoint(
             `/speech/transcribe?language_code=${encodeURIComponent(language)}`,
           ),
@@ -154,7 +163,7 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
               "Content-Type": audio.type || "audio/webm",
             },
             body: audio,
-            signal: controller.signal,
+            signal,
             cache: "no-store",
           },
         );
@@ -169,12 +178,12 @@ export function createLiveApi(baseUrl: string, fetcher: typeof fetch = fetch) {
         return parsed.data;
       } catch (error) {
         if (error instanceof ApiError) throw error;
+        if (signal?.aborted)
+          throw new ApiError("REQUEST_CANCELLED", "Voice request cancelled.");
         throw new ApiError(
           "NETWORK_ERROR",
           "We couldn’t reach the voice service.",
         );
-      } finally {
-        clearTimeout(timer);
       }
     },
     async synthesize(

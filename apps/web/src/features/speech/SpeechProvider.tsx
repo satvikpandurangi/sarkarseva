@@ -24,9 +24,7 @@ export const SPEECH_LANGUAGES: Record<Locale, SpeechLanguage> = {
 
 /** Stored as a code or raw failure and worded at render time, so it follows a language switch. */
 type SpeechProblem =
-  | { kind: keyof Messages["speech"]["errors"] }
-  | { failure: unknown }
-  | null;
+  { kind: keyof Messages["speech"]["errors"] } | { failure: unknown } | null;
 
 const RECORDING_LIMIT_MS = 28_000;
 const NO_SPEECH_LIMIT_MS = 8_000;
@@ -42,6 +40,14 @@ function useSpeechState() {
   const [working, setWorking] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [problem, setProblem] = useState<SpeechProblem>(null);
+  const [capabilities, setCapabilities] = useState({
+    speech: false,
+    profile_extraction: false,
+  });
+  const [checkingCapabilities, setCheckingCapabilities] = useState(true);
+  const [transcribing, setTranscribing] = useState(false);
+  const transcriptionRequest = useRef<AbortController | null>(null);
+  const transcriptionRevision = useRef(0);
   const recorder = useRef<MediaRecorder | null>(null);
   const stream = useRef<MediaStream | null>(null);
   const chunks = useRef<Blob[]>([]);
@@ -52,6 +58,30 @@ function useSpeechState() {
   const receiveTranscript = useRef<(text: string) => void>(() => undefined);
   const player = useRef<HTMLAudioElement | null>(null);
   const audioUrl = useRef<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    void api
+      .capabilities()
+      .then((value) => {
+        if (active) setCapabilities(value);
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        if (active) setCheckingCapabilities(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const cancelTranscription = useCallback(() => {
+    transcriptionRevision.current++;
+    transcriptionRequest.current?.abort();
+    transcriptionRequest.current = null;
+    setTranscribing(false);
+    setWorking(false);
+  }, []);
 
   const cleanupRecording = useCallback(() => {
     if (timer.current) clearTimeout(timer.current);
@@ -75,6 +105,10 @@ function useSpeechState() {
   const startRecording = useCallback(
     async (onTranscript: (text: string) => void) => {
       setProblem(null);
+      if (!capabilities.speech) {
+        setProblem({ kind: "unavailable" });
+        return;
+      }
       if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
         setProblem({ kind: "unsupported" });
         return;
@@ -83,6 +117,7 @@ function useSpeechState() {
         const microphone = await navigator.mediaDevices.getUserMedia({
           audio: true,
         });
+        stream.current = microphone;
         const preferred = [
           "audio/webm;codecs=opus",
           "audio/webm",
@@ -101,6 +136,7 @@ function useSpeechState() {
           if (event.data.size) chunks.current.push(event.data);
         };
         activeRecorder.onerror = () => {
+          activeRecorder.onstop = null;
           setProblem({ kind: "recordingFailed" });
           cleanupRecording();
         };
@@ -115,11 +151,30 @@ function useSpeechState() {
             return;
           }
           setWorking(true);
+          setTranscribing(true);
+          const request = new AbortController();
+          transcriptionRequest.current = request;
+          const revision = ++transcriptionRevision.current;
           void api
-            .transcribe(audio, language)
-            .then((result) => receiveTranscript.current(result.transcript))
-            .catch((reason: unknown) => setProblem({ failure: reason }))
-            .finally(() => setWorking(false));
+            .transcribe(audio, language, request.signal)
+            .then((result) => {
+              if (revision === transcriptionRevision.current)
+                receiveTranscript.current(result.transcript);
+            })
+            .catch((reason: unknown) => {
+              if (
+                !request.signal.aborted &&
+                revision === transcriptionRevision.current
+              )
+                setProblem({ failure: reason });
+            })
+            .finally(() => {
+              if (revision === transcriptionRevision.current) {
+                transcriptionRequest.current = null;
+                setWorking(false);
+                setTranscribing(false);
+              }
+            });
         };
         activeRecorder.start(250);
         setRecording(true);
@@ -135,6 +190,7 @@ function useSpeechState() {
           analyser.fftSize = 2_048;
           source.connect(analyser);
           audioContext.current = context;
+          if (context.state === "suspended") await context.resume();
 
           const detectSilence = () => {
             if (activeRecorder.state !== "recording") return;
@@ -169,6 +225,8 @@ function useSpeechState() {
           silenceFrame.current = requestAnimationFrame(detectSilence);
         } catch {
           // Recording still stops at the maximum duration when Web Audio is unavailable.
+          // Let the speech service validate the recording if local VAD is unavailable.
+          heardSpeech.current = true;
         }
         timer.current = setTimeout(() => {
           if (activeRecorder.state === "recording") activeRecorder.stop();
@@ -178,7 +236,7 @@ function useSpeechState() {
         setProblem({ kind: "microphone" });
       }
     },
-    [cleanupRecording, language],
+    [capabilities.speech, cleanupRecording, language],
   );
 
   const stopSpeaking = useCallback(() => {
@@ -192,6 +250,10 @@ function useSpeechState() {
   const speak = useCallback(
     async (text: string, sourceLanguage: SpeechLanguage = "en-IN") => {
       setProblem(null);
+      if (!capabilities.speech) {
+        setProblem({ kind: "unavailable" });
+        return;
+      }
       stopSpeaking();
       setWorking(true);
       try {
@@ -218,11 +280,14 @@ function useSpeechState() {
         setWorking(false);
       }
     },
-    [language, stopSpeaking],
+    [capabilities.speech, language, stopSpeaking],
   );
 
   useEffect(
     () => () => {
+      transcriptionRevision.current++;
+      transcriptionRequest.current?.abort();
+      if (recorder.current) recorder.current.onstop = null;
       if (recorder.current?.state === "recording") recorder.current.stop();
       stream.current?.getTracks().forEach((track) => track.stop());
       player.current?.pause();
@@ -233,6 +298,11 @@ function useSpeechState() {
 
   return {
     language,
+    available: capabilities.speech,
+    profileExtractionAvailable: capabilities.profile_extraction,
+    checkingCapabilities,
+    transcribing,
+    cancelTranscription,
     setLanguage,
     recording,
     working,

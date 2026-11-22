@@ -41,22 +41,39 @@ export function SpeechInputControls({
       <Button
         type="button"
         variant={speech.recording ? "secondary" : "quiet"}
-        busy={speech.working}
-        disabled={speech.working || speech.recording}
-        onClick={() => void speech.startRecording(onTranscript)}
+        busy={speech.transcribing}
+        disabled={speech.working || !speech.available}
+        onClick={() =>
+          speech.recording
+            ? speech.stopRecording()
+            : void speech.startRecording(onTranscript)
+        }
         aria-pressed={speech.recording}
       >
         <Mic size={16} />
         {speech.recording
-          ? t.listening
-          : speech.working
+          ? t.stopRecording
+          : speech.transcribing
             ? t.transcribing
             : t.speak}
       </Button>
+      {speech.transcribing && (
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={speech.cancelTranscription}
+        >
+          {t.cancel}
+        </Button>
+      )}
       <span className="small muted" aria-live="polite">
-        {speech.recording
-          ? t.listeningHint
-          : t.privacyNote}
+        {speech.checkingCapabilities
+          ? t.checking
+          : !speech.available
+            ? t.errors.unavailable
+            : speech.recording
+              ? t.listeningHint
+              : t.privacyNote}
       </span>
       {speech.error && <InlineAlert error>{speech.error}</InlineAlert>}
     </div>
@@ -89,7 +106,11 @@ export function ReadAloudButton({ text }: { text: string }) {
         type="button"
         variant="quiet"
         busy={speech.working && !speech.speaking}
-        disabled={!text.trim() || (speech.working && !speech.speaking)}
+        disabled={
+          !speech.available ||
+          !text.trim() ||
+          (speech.working && !speech.speaking)
+        }
         onClick={() =>
           speech.speaking ? speech.stopSpeaking() : void speech.speak(text)
         }
@@ -97,10 +118,11 @@ export function ReadAloudButton({ text }: { text: string }) {
         {speech.speaking ? <VolumeX size={16} /> : <Volume2 size={16} />}
         {speech.speaking ? t.stopAudio : t.readAloud}
       </Button>
+      {!speech.checkingCapabilities && !speech.available && (
+        <span className="small muted">{t.errors.unavailable}</span>
+      )}
       {speech.language !== "en-IN" && (
-        <span className="small muted">
-          {t.translatedAudio}
-        </span>
+        <span className="small muted">{t.translatedAudio}</span>
       )}
       {speech.error && <InlineAlert error>{speech.error}</InlineAlert>}
     </div>

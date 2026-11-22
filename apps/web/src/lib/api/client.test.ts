@@ -1,4 +1,4 @@
-import { describe, it, expect, test } from "vitest";
+import { describe, it, expect, test, vi } from "vitest";
 import { createLiveApi, ApiError, errorMessage } from "./client";
 import { messages } from "@/i18n/messages";
 import { createMockApi } from "./mock";
@@ -19,6 +19,75 @@ import question from "./fixtures/question-next.response.json";
 import schemes from "./fixtures/schemes-list.response.json";
 import { safeOfficialUrl } from "@/components/ui";
 describe("contract boundary", () => {
+  it("cancels an in-flight transcription without retrying the audio upload", async () => {
+    const control = new AbortController();
+    const sender = vi.fn<typeof fetch>(
+      (_input, init) =>
+        new Promise((_resolve, reject) => {
+          init?.signal?.addEventListener("abort", () =>
+            reject(new DOMException("cancelled", "AbortError")),
+          );
+        }),
+    );
+    const pending = createLiveApi("https://api.test", sender).transcribe(
+      new Blob(["audio"]),
+      "en-IN",
+      control.signal,
+    );
+    const assertion = expect(pending).rejects.toMatchObject({
+      code: "REQUEST_CANCELLED",
+    });
+    control.abort();
+    await assertion;
+    expect(sender).toHaveBeenCalledTimes(1);
+  });
+  it("allows a slow service startup without failing after twenty seconds", async () => {
+    vi.useFakeTimers();
+    try {
+      const api = createLiveApi(
+        "https://api.test",
+        (_input, init) =>
+          new Promise((resolve, reject) => {
+            init?.signal?.addEventListener("abort", () =>
+              reject(new DOMException("aborted", "AbortError")),
+            );
+            setTimeout(
+              () =>
+                resolve(
+                  new Response(JSON.stringify({ ...schemes, items: [] })),
+                ),
+              30_000,
+            );
+          }),
+      );
+      const assertion = expect(
+        api.schemes(new URLSearchParams()),
+      ).resolves.toMatchObject({ items: [] });
+      await vi.advanceTimersByTimeAsync(31_000);
+      await assertion;
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+  it("retries a temporary read failure without duplicating writes", async () => {
+    const reader = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(new Response("starting", { status: 503 }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ ...schemes, items: [] })),
+      );
+    await expect(
+      createLiveApi("https://api.test", reader).schemes(new URLSearchParams()),
+    ).resolves.toMatchObject({ items: [] });
+    expect(reader).toHaveBeenCalledTimes(2);
+    const writer = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(new Response("starting", { status: 503 }));
+    await expect(
+      createLiveApi("https://api.test", writer).createSession(),
+    ).rejects.toMatchObject({ status: 503 });
+    expect(writer).toHaveBeenCalledTimes(1);
+  });
   it("rejects fabricated citation IDs in detail and guidance", () => {
     const altered = structuredClone(guidance);
     altered.documents[0].source_id = "40000000-0000-4000-8000-000000000099";
@@ -182,17 +251,21 @@ describe("contract boundary", () => {
 
 test("errorMessage words known client codes in the reader's language", () => {
   const hiErrors = messages.hi.errors;
-  const live = new ApiError("LIVE_API_REQUIRED", "Voice input requires the live API.", 503);
+  const live = new ApiError(
+    "LIVE_API_REQUIRED",
+    "Voice input requires the live API.",
+    503,
+  );
   expect(errorMessage(live, hiErrors)).toBe(hiErrors.codes.LIVE_API_REQUIRED);
   // Server failures stay generic; backend wording for 4xx passes through.
-  expect(errorMessage(new ApiError("SERVICE_UNAVAILABLE", "x", 503), hiErrors)).toBe(
-    hiErrors.unavailable,
-  );
+  expect(
+    errorMessage(new ApiError("SERVICE_UNAVAILABLE", "x", 503), hiErrors),
+  ).toBe(hiErrors.unavailable);
   expect(errorMessage(new ApiError("HTTP_ERROR", "x", 502), hiErrors)).toBe(
     hiErrors.unavailable,
   );
-  expect(errorMessage(new ApiError("VALIDATION", "Age is too high", 422), hiErrors)).toBe(
-    "Age is too high",
-  );
+  expect(
+    errorMessage(new ApiError("VALIDATION", "Age is too high", 422), hiErrors),
+  ).toBe("Age is too high");
   expect(errorMessage(new Error("boom"), hiErrors)).toBe(hiErrors.generic);
 });

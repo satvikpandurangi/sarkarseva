@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ApiError } from "@/lib/api/client";
+import { fetchWithRecovery } from "@/lib/api/transport";
 
 const summarySchema = z.object({
   slug: z.string().regex(/^[a-z0-9][a-z0-9_-]{0,159}$/),
@@ -53,10 +54,9 @@ async function request<T>(
       "The scheme service is not configured.",
     );
   try {
-    const response = await fetch(`${base}/api/v1${path}`, {
+    const response = await fetchWithRecovery(fetch, `${base}/api/v1${path}`, {
       method: body ? "POST" : "GET",
       cache: "no-store",
-      signal: AbortSignal.timeout(20_000),
       headers: {
         Accept: "application/json",
         ...(body ? { "Content-Type": "application/json" } : {}),
@@ -78,6 +78,11 @@ async function request<T>(
     return parsed.data;
   } catch (error) {
     if (error instanceof ApiError) throw error;
+    if (error instanceof Error && error.name === "TimeoutError")
+      throw new ApiError(
+        "SERVICE_TIMEOUT",
+        "The service is taking longer to start. Please try again.",
+      );
     throw new ApiError(
       "NETWORK_ERROR",
       "The scheme service is unavailable. Please try again.",

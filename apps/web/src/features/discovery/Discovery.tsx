@@ -2,7 +2,8 @@
 import { useCallback } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Search, ArrowRight } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, isMock } from "@/lib/api";
+import { ReferenceDiscovery } from "./ReferenceDiscovery";
 import { useResource } from "@/lib/api/use-resource";
 import {
   Button,
@@ -18,6 +19,9 @@ import { categories, queryFromSearch } from "./types";
 import { CategoryChip } from "./CategoryChip";
 import { SchemeCard } from "./SchemeCard";
 export function Discovery() {
+  return isMock ? <ReviewedDiscovery /> : <ReferenceDiscovery />;
+}
+function ReviewedDiscovery() {
   const m = useMessages();
   const t = m.discover;
   const search = useSearchParams();
@@ -169,24 +173,23 @@ export function Discovery() {
           )}
         </>
       ) : (
-        !r.error && (
-          // No filters and nothing listed means the catalogue itself is empty.
-          query ? (
-            <EmptyState title={t.emptyTitle}>
-              <p>{t.emptyText}</p>
-              <Button
-                variant="quiet"
-                onClick={() => update(new URLSearchParams())}
-              >
-                {t.clearFilters}
-              </Button>
-            </EmptyState>
-          ) : (
-            <EmptyState title={t.catalogueEmptyTitle}>
-              <p>{t.catalogueEmptyText}</p>
-            </EmptyState>
-          )
-        )
+        !r.error &&
+        // No filters and nothing listed means the catalogue itself is empty.
+        (query ? (
+          <EmptyState title={t.emptyTitle}>
+            <p>{t.emptyText}</p>
+            <Button
+              variant="quiet"
+              onClick={() => update(new URLSearchParams())}
+            >
+              {t.clearFilters}
+            </Button>
+          </EmptyState>
+        ) : (
+          <EmptyState title={t.catalogueEmptyTitle}>
+            <p>{t.catalogueEmptyText}</p>
+          </EmptyState>
+        ))
       )}
     </section>
   );

@@ -12,6 +12,6 @@ class SpeechSettings(BaseSettings):
     tts_model: str = "bulbul:v4-flash"
     translation_model: str = "sarvam-translate:v1"
     chat_model: str = Field(
-        default="sarvam-105b-conversations",
+        default="sarvam-105b",
         pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$",
     )

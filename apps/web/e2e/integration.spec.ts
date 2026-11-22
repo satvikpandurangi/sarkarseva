@@ -1,6 +1,108 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("a hanging voice request can be cancelled without losing typed details", async ({
+  page,
+}) => {
+  await page.route("**/api/v1/capabilities", (route) =>
+    route.fulfill({ json: { speech: true, profile_extraction: true } }),
+  );
+  await page.route("**/api/v1/speech/transcribe?*", () => {});
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "mediaDevices", {
+      value: {
+        getUserMedia: async () => ({ getTracks: () => [{ stop() {} }] }),
+      },
+    });
+    Object.defineProperty(window, "MediaRecorder", {
+      value: class {
+        static isTypeSupported() {
+          return true;
+        }
+        state = "inactive";
+        mimeType = "audio/webm";
+        ondataavailable: ((event: { data: Blob }) => void) | null = null;
+        onstop: (() => void) | null = null;
+        onerror = null;
+        start() {
+          this.state = "recording";
+          setTimeout(() => {
+            this.ondataavailable?.({
+              data: new Blob(["synthetic audio"], { type: "audio/webm" }),
+            });
+            this.stop();
+          }, 250);
+        }
+        stop() {
+          this.state = "inactive";
+          this.onstop?.();
+        }
+      },
+    });
+    Object.defineProperty(window, "AudioContext", {
+      value: class {
+        state = "running";
+        close() {
+          return Promise.resolve();
+        }
+        createMediaStreamSource() {
+          return { connect() {} };
+        }
+        createAnalyser() {
+          return {
+            fftSize: 2048,
+            getByteTimeDomainData(data: Uint8Array) {
+              data.fill(155);
+            },
+          };
+        }
+      },
+    });
+  });
+  await page.goto("/discover");
+  const input = page.getByLabel("Tell us about yourself");
+  await input.fill("I am a student");
+  await page.getByRole("button", { name: "Speak instead" }).click();
+  await page.getByRole("button", { name: "Cancel voice request" }).click();
+  await expect(
+    page.getByRole("button", { name: "Speak instead" }),
+  ).toBeEnabled();
+  await expect(input).toHaveValue("I am a student");
+  await expect(
+    page.getByRole("button", { name: "Transcribing…" }),
+  ).not.toBeVisible();
+});
+
+test("Discover browses imported records instead of an empty reviewed-only list", async ({
+  page,
+}) => {
+  await page.goto("/discover");
+  await expect(page.getByTestId("discover-catalogue-count")).toContainText(
+    "3,397",
+    { timeout: 5000 },
+  );
+  await expect(
+    page.getByRole("link", { name: "Read scheme" }).first(),
+  ).toBeVisible();
+});
+
+test("unconfigured voice is disabled before requesting microphone access", async ({
+  page,
+}) => {
+  await page.route("**/api/v1/capabilities", (route) =>
+    route.fulfill({ json: { speech: false, profile_extraction: false } }),
+  );
+  await page.goto("/discover");
+  await expect(
+    page.getByRole("button", { name: "Speak instead" }),
+  ).toBeDisabled({ timeout: 5000 });
+  await expect(
+    page.getByText(
+      "Voice is not available right now. You can type or enter your details manually.",
+    ),
+  ).toBeVisible();
+});
+
 // Run against real local API/data with the live integration configuration.
 test("SarkarSeva search reaches the catalogue and opens a real scheme", async ({
   page,

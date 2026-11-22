@@ -36,6 +36,9 @@ export function createMockApi(delay = 350): Api {
       throw new ApiError("NOT_FOUND", "Scheme not found.", 404);
   }
   return {
+    async capabilities() {
+      return { speech: false, profile_extraction: true };
+    },
     async extract() {
       await wait();
       return extractSchema.parse(structuredClone(extraction));

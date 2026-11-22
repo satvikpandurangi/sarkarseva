@@ -3,15 +3,36 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Request
+from pydantic import SecretStr
 from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.api.dependencies import get_db_session
+from app.modules.ai.gemini import GeminiExtractor, get_extractor
+from app.modules.speech.sarvam import SarvamSpeech, get_speech_service
 from app.schemas.common import HealthResponse
 from app.services.catalogue import draft_query
 
 router = APIRouter(tags=["system"])
+
+
+@router.get("/api/v1/capabilities")
+def capabilities(
+    extractor: Annotated[GeminiExtractor, Depends(get_extractor)],
+    speech: Annotated[SarvamSpeech, Depends(get_speech_service)],
+) -> dict[str, bool]:
+    def present(value: SecretStr | None) -> bool:
+        return bool(value and value.get_secret_value().strip())
+
+    return {
+        "speech": present(speech.settings.api_key),
+        "profile_extraction": bool(
+            present(extractor.groq_settings.api_key if extractor.groq_settings else None)
+            or (present(extractor.settings.api_key) and extractor.settings.model)
+            or present(extractor.sarvam_settings.api_key if extractor.sarvam_settings else None)
+        ),
+    }
 
 
 @router.get("/ready")

@@ -261,6 +261,8 @@ export const en = {
         "The service returned placeholder sources. Scheme guidance cannot be verified.",
       NETWORK_ERROR:
         "We couldn’t reach the service. Check your connection and try again.",
+      SERVICE_TIMEOUT:
+        "The service is taking longer to start. Please try again; your details are still here.",
       LIVE_API_REQUIRED:
         "Voice features need a connection to the live service.",
     } as Record<string, string>,
@@ -501,7 +503,7 @@ export const en = {
   discover: {
     eyebrow: "Discover schemes",
     title: "Find support that fits your situation",
-    lead: "Describe your situation for a personal shortlist, or browse the catalogue by category and state.",
+    lead: "Describe your situation for a personal shortlist, or browse reference records by category and government level.",
     browseEyebrow: "Browse by category",
     browseTitle: "Explore schemes",
     browseNote: "Browse without sharing a profile",
@@ -565,7 +567,8 @@ export const en = {
     confirmTitle: "Let’s check your details.",
     confirmLead:
       "We found a few details from your message. Confirm or correct them before we look for matching schemes.",
-    extractedSummary: "{count} details extracted · More information may be needed",
+    extractedSummary:
+      "{count} details extracted · More information may be needed",
     extractedSummaryReady: "{count} details extracted · Ready for matching",
     manualEntrySummary: "Manual entry · Fill in what you know",
     extractedSectionTitle: "Extracted information",
@@ -871,6 +874,11 @@ export const en = {
     cta: "Review or clear my profile",
   },
   speech: {
+    checking: "Checking voice availability…",
+    stopRecording: "Stop recording",
+    cancel: "Cancel voice request",
+    manualEntry:
+      "Automatic profile entry is unavailable. Please enter and confirm your details below.",
     voiceLanguage: "Voice language",
     audioLanguage: "Audio language",
     speak: "Speak instead",
@@ -884,6 +892,8 @@ export const en = {
     stopAudio: "Stop audio",
     translatedAudio: "AI-translated audio; check the original text.",
     errors: {
+      unavailable:
+        "Voice is not available right now. You can type or enter your details manually.",
       unsupported: "Voice recording is not supported in this browser.",
       recordingFailed:
         "The recording could not be completed. Please try again.",

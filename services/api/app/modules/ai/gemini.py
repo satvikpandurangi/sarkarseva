@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 from pydantic import ValidationError
 
 from app.modules.ai.prompts import EXTRACTION_PROMPT
-from app.modules.ai.settings import AISettings
+from app.modules.ai.settings import AISettings, GroqSettings
 from app.modules.ai.validation import Draft, validate_extraction
 from app.modules.matching.facts import contains_sensitive_identifier
 from app.modules.speech.settings import SpeechSettings
@@ -31,9 +31,15 @@ class ExtractionLimited(RuntimeError):
 
 
 class GeminiExtractor:
-    def __init__(self, settings: AISettings, sarvam_settings: SpeechSettings | None = None) -> None:
+    def __init__(
+        self,
+        settings: AISettings,
+        sarvam_settings: SpeechSettings | None = None,
+        groq_settings: GroqSettings | None = None,
+    ) -> None:
         self.settings = settings
         self.sarvam_settings = sarvam_settings
+        self.groq_settings = groq_settings
         self.requests: deque[float] = deque()
         self.lock = Lock()
 
@@ -49,7 +55,9 @@ class GeminiExtractor:
         )
         sarvam_key = self.sarvam_settings.api_key if self.sarvam_settings else None
         sarvam_configured = sarvam_key is not None and bool(sarvam_key.get_secret_value().strip())
-        if not gemini_configured and not sarvam_configured:
+        groq_key = self.groq_settings.api_key if self.groq_settings else None
+        groq_configured = groq_key is not None and bool(groq_key.get_secret_value().strip())
+        if not gemini_configured and not sarvam_configured and not groq_configured:
             raise ExtractionUnavailable
         # shortcut: global per-process budget; use a shared limiter before multi-worker deployment.
         with self.lock:
@@ -59,6 +67,8 @@ class GeminiExtractor:
             if len(self.requests) >= 20:
                 raise ExtractionLimited
             self.requests.append(now)
+        if groq_configured:
+            return self._extract_with_groq(text, locale)
         if not gemini_configured:
             return self._extract_with_sarvam(text, locale)
         assert key is not None and model is not None
@@ -101,6 +111,68 @@ class GeminiExtractor:
             KeyError,
             IndexError,
             AttributeError,
+            RecursionError,
+        ):
+            raise ExtractionUnavailable from None
+        return ProfileExtractResponse(
+            facts=facts,
+            needs_review=True,
+            unknown_fields=[
+                field
+                for field, value in facts.model_dump().items()
+                if value is None or value == "not_sure"
+            ],
+        )
+
+    def _extract_with_groq(self, text: str, locale: str) -> ProfileExtractResponse:
+        settings = self.groq_settings
+        assert settings is not None and settings.api_key is not None
+        payload = {
+            "model": settings.model,
+            "temperature": 0,
+            "max_completion_tokens": 2048,
+            "response_format": {"type": "json_object"},
+            "messages": [
+                {
+                    "role": "system",
+                    "content": EXTRACTION_PROMPT
+                    + "\nJSON schema: "
+                    + json.dumps(Draft.model_json_schema()),
+                },
+                {"role": "user", "content": json.dumps({"text": text, "locale": locale})},
+            ],
+        }
+        if settings.model.startswith("openai/gpt-oss"):
+            payload["reasoning_effort"] = "low"
+        request = Request(
+            "https://api.groq.com/openai/v1/chat/completions",
+            data=json.dumps(payload).encode(),
+            method="POST",
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + settings.api_key.get_secret_value(),
+            },
+        )
+        try:
+            with urlopen(request, timeout=20) as response:
+                raw = response.read(64001)
+            if len(raw) > 64000:
+                raise ValueError("Oversized response")
+            choices = json.loads(raw)["choices"]
+            if len(choices) != 1 or choices[0]["finish_reason"] != "stop":
+                raise ValueError("Incomplete response")
+            facts = validate_extraction(choices[0]["message"]["content"], text)
+        except HTTPError as exc:
+            if exc.code == 429:
+                raise ExtractionLimited from None
+            raise ExtractionUnavailable from None
+        except (
+            OSError,
+            HTTPException,
+            ValueError,
+            TypeError,
+            KeyError,
+            IndexError,
             RecursionError,
         ):
             raise ExtractionUnavailable from None
@@ -260,4 +332,8 @@ def get_extractor() -> GeminiExtractor:
         sarvam_settings = SpeechSettings()
     except ValidationError:
         sarvam_settings = SpeechSettings(_env_file=None, api_key=None)
-    return GeminiExtractor(settings, sarvam_settings)
+    try:
+        groq_settings = GroqSettings()
+    except ValidationError:
+        groq_settings = GroqSettings(_env_file=None, api_key=None)
+    return GeminiExtractor(settings, sarvam_settings, groq_settings)

@@ -19,6 +19,7 @@ import { useMatching } from "@/features/matching/hooks";
 import { useMessages } from "@/i18n/client";
 import { format } from "@/i18n/config";
 import { SpeechInputControls } from "@/features/speech/SpeechControls";
+import { useSpeech } from "@/features/speech/SpeechProvider";
 import { ProfileConfirmation } from "./ProfileConfirmation";
 
 export function ModeNotice() {
@@ -36,14 +37,22 @@ export function ProfileComposer() {
   const t = m.profile;
   const p = useProfile();
   const matching = useMatching();
+  const speech = useSpeech();
   const [busy, setBusy] = useState<"extract" | "confirm" | "clear" | null>(
     null,
   );
   const [error, setError] = useState("");
+  const [manualNotice, setManualNotice] = useState(false);
   async function run(kind: "extract" | "confirm" | "clear") {
     setBusy(kind);
     setError("");
+    setManualNotice(false);
     try {
+      if (kind === "extract" && !speech.profileExtractionAvailable) {
+        setManualNotice(true);
+        p.setReviewing(true);
+        return;
+      }
       await p[kind]();
       if (kind === "clear") matching.reset();
     } catch (e) {
@@ -128,7 +137,8 @@ export function ProfileComposer() {
             {t.privacy}
           </p>
         </form>
-        {error && !p.reviewing && <InlineAlert error>{error}</InlineAlert>}
+        {error && <InlineAlert error>{error}</InlineAlert>}
+        {manualNotice && <InlineAlert>{m.speech.manualEntry}</InlineAlert>}
       </GlassPanel>
       {p.reviewing && (
         <ProfileConfirmation

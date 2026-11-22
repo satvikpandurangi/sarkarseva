@@ -9,3 +9,11 @@ class AISettings(BaseSettings):
     api_key: SecretStr | None = None
     model: str | None = Field(default=None, pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$")
     embedding_model: str | None = Field(default=None, pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$")
+
+
+class GroqSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="GROQ_", env_file=".env", extra="ignore")
+    api_key: SecretStr | None = None
+    model: str = Field(
+        default="openai/gpt-oss-20b", pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._/-]{0,99}$"
+    )
