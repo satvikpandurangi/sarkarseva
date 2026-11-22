@@ -21,9 +21,36 @@
       "temporary_session_crud": true
     }
   },
-  "render": { "workspace_id": "tea-d9iisqv41pts73bb92qg", "workspace_confirmed_by_user": true, "service_created": false },
-  "vercel": { "team_id": "team_iusdRQvZGpU8vaSTpDOY3TVB", "scope": "satvikpandurangis-projects", "access": "workspace API still returns 403 after user reported authorizing consent" },
-  "github": { "authenticated_user": "satvikpandurangi", "authentication": "reauthorized", "deployment_repository": "https://github.com/satvikpandurangi/sarkarseva", "release_branch": "sarkarseva-v2", "code_pushed": false },
+  "render": {
+    "workspace_id": "tea-d9iisqv41pts73bb92qg",
+    "workspace_confirmed_by_user": true,
+    "blueprint_id": "exs-dc1gmglg1s2s73dar6i0",
+    "planning_outcome": "planned",
+    "proposed_service_name": "sarkarseva-v2-api-s7ad",
+    "plan": "free",
+    "region": "singapore",
+    "auto_sync": false,
+    "service_created": false,
+    "approval": "pending user review of returned plan"
+  },
+  "vercel": {
+    "team_id": "team_iusdRQvZGpU8vaSTpDOY3TVB",
+    "scope": "satvikpandurangis-projects",
+    "access": "authenticated CLI works; connector still returns workspace 403",
+    "project_id": "prj_VMr32PUQUZUNGtgJO2umjfnZt87Y",
+    "project_name": "sarkarseva-v2",
+    "root_directory": "apps/web",
+    "framework": "nextjs",
+    "git_connected": false,
+    "public_deployment_created": false
+  },
+  "github": {
+    "authenticated_user": "satvikpandurangi",
+    "deployment_repository": "https://github.com/satvikpandurangi/sarkarseva",
+    "release_branch": "sarkarseva-v2",
+    "code_pushed": true,
+    "original_main_preserved_at": "1e6d603375aec3242b8ac1c8d363bbfd3d9c3c57"
+  },
   "existing_projects_modified": false,
   "public_deployment_created": false
 }

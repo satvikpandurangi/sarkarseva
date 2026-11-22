@@ -30,6 +30,11 @@ version are retained; no force push is needed. The repository layout for v2 is
 - Initial Blueprint application requires approval of Render's reviewed plan.
   Automatic backend deploys are disabled for the first release.
 
+The Vercel project is created and its root/framework settings are verified. Render
+has validated the proposed new free service as `sarkarseva-v2-api-s7ad`. Review the
+[Render deployment plan](https://dashboard.render.com/blueprint/exs-dc1gmglg1s2s73dar6i0/sync/exe-dc1gmhdg1s2s73daran0)
+before applying it. Public deployments have not started.
+
 ## Release limits
 
 The imported July 2025 records are unverified reference material. They are not
