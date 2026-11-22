@@ -47,4 +47,5 @@ current official eligibility decisions. Optional AI, voice, account restoration
 and email-provider integrations require separate configuration and verification.
 The core public HTTPS journeys passed end-to-end checks; this does not certify
 optional providers, current policy accuracy or unlimited availability. CodeRabbit
-review is additionally requested and awaits its plugin/authentication setup.
+review is additionally requested: plugin 1.1.4 is installed and enabled, but the
+CLI is signed out and no CodeRabbit review has run yet.

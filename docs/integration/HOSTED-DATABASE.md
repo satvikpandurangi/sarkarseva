@@ -62,4 +62,5 @@ Continue source curation, dependency updates and release monitoring. An external
 uptime monitor and a backup-restore exercise were not configured by this release.
 Optional provider-backed authentication, voice and AI integrations remain disabled
 until configured and separately verified. CodeRabbit review was additionally
-requested; its authentication/setup is a separate pending check.
+requested; plugin 1.1.4 is installed and enabled, while CLI authentication is a
+separate pending check. No CodeRabbit review has run yet.

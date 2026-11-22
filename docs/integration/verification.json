@@ -19,7 +19,7 @@
   },
   "review": { "independent_reviews": 1, "critical_findings_fixed": 1, "important_findings_fixed": 5, "deferred_minors": 0 },
   "not_verified": [
-    "CodeRabbit review: requested, plugin/authentication setup pending",
+    "CodeRabbit review: plugin 1.1.4 installed/enabled; CLI 0.9.1 signed out; review not started",
     "External uptime monitoring, load testing and backup restore exercise",
     "Live Supabase authentication and account restoration",
     "Live model, voice and email providers",
