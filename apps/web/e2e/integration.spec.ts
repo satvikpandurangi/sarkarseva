@@ -116,7 +116,7 @@ for (const width of [320, 375, 1280]) {
 for (const width of [320, 1280]) {
   test(`new public screens meet accessibility checks at ${width}px`, async ({
     page,
-  }) => {
+  }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     for (const route of ["/", "/catalogue?q=scholarship", "/assistant"]) {
       await page.goto(route);
@@ -132,7 +132,9 @@ for (const width of [320, 1280]) {
         })),
       ).toEqual([]);
       await page.screenshot({
-        path: `artifacts/integration/${route === "/" ? "home" : route.startsWith("/catalogue") ? "catalogue" : "assistant"}-${width}.png`,
+        path: testInfo.outputPath(
+          `${route === "/" ? "home" : route.startsWith("/catalogue") ? "catalogue" : "assistant"}-${width}.png`,
+        ),
         fullPage: false,
       });
     }

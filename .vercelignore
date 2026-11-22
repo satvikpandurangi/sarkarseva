@@ -1,0 +1,14 @@
+# Upload only the frontend source from this monorepo.
+services/
+data/
+docs/
+artifacts/
+.git/
+**/.env*
+**/.vercel/
+**/node_modules/
+**/.next/
+**/.next-mock/
+**/test-results/
+**/playwright-report/
+**/*.log

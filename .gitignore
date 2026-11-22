@@ -23,3 +23,5 @@ data/schemes/staging-review.json
 .next-mock/
 services/api/data/
 
+.vercel
+.env*
