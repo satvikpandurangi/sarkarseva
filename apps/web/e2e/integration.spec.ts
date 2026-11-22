@@ -255,7 +255,7 @@ test("manual profile produces preliminary matches from the real dataset", async 
   await page.getByRole("button", { name: "Confirm my details" }).click();
   await page.getByRole("link", { name: "See my recommendations" }).click();
   await expect(page.locator(".match-card").first()).toBeVisible({
-    timeout: 20_000,
+    timeout: 60_000,
   });
   await expect(page.locator(".match-card").first()).toContainText(
     "Preliminary",

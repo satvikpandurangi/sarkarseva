@@ -1,6 +1,6 @@
 # Integration progress — plan: docs/superpowers/plans/2026-11-22-sarkarseva-integration.md
 
-Updated 23 November 2026. v2.0.2 is live at https://sarkarseva-v2.vercel.app with the hosted Supabase database, Groq extraction and Sarvam voice. Release checks passed; the operational limits below remain explicit.
+Updated 23 November 2026. v2.0.3 mobile improvements are live at https://sarkarseva-v2.vercel.app with the hosted Supabase database, Groq extraction and Sarvam voice. The operational limits below remain explicit.
 
 ## Completed
 
@@ -13,6 +13,8 @@ Updated 23 November 2026. v2.0.2 is live at https://sarkarseva-v2.vercel.app wit
 - Added pinned dataset download, idempotent import receipt, metadata normalization, readiness checks, locked backend dependencies and Vercel/Render configuration.
 
 ## Verification
+
+- v2.0.3: 20 mobile checks passed locally and on public HTTPS in Chromium and WebKit, including 320px phones, Android, iPhone and landscape. Touch search, saved checklists, translated categories, readable form controls, dock targets/clearance and menu navigation passed. Hardware keyboards, safe-area insets and microphones still require physical-device testing. See `MOBILE-V2.0.3.md` for initial timeout observations and bounded hosted test waits.
 
 - Backend: 443 passed, 2 optional checks skipped; Ruff and mypy pass.
 - Frontend unit suite: 52 passed, 5 optional checks skipped; lint and type checking pass.

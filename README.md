@@ -7,8 +7,9 @@ requirements, save records and prepare document checklists. English, Hindi and
 Kannada navigation is available; original dataset records remain in English.
 
 **Live website:** [sarkarseva-v2.vercel.app](https://sarkarseva-v2.vercel.app).
-The v2.0.2 public HTTPS release passed all thirteen hosted browser checks and an
-additional real Groq extraction-to-matching journey. See
+The v2.0.3 mobile update passed twenty hosted touch/layout checks across Android
+Chromium, iPhone WebKit, 320px phones and landscape. The v2.0.2 provider release
+also passed a real Groq extraction-to-matching journey. See
 [deployment status](docs/integration/deployment-state.json) for the deployed commits.
 
 **Imported records are unverified, from a July 2025 dataset.** They are discovery
@@ -81,5 +82,6 @@ patches to Next.js 16.4.6 and Zod 4.6.7.
 
 The updated version is maintained on `sarkarseva-v2` in the original SarkarSeva
 repository. Its existing `main` version remains available. See the
-[v2 release notes](docs/integration/RELEASE-V2.md) and
+[mobile release notes](docs/integration/MOBILE-V2.0.3.md),
+[original v2 release notes](docs/integration/RELEASE-V2.md) and
 [hosted database handoff](docs/integration/HOSTED-DATABASE.md).

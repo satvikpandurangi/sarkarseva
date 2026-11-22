@@ -6,7 +6,8 @@ export default defineConfig({
   outputDir: "test-results/mobile",
   workers: 1,
   timeout: 90_000,
-  expect: { timeout: 20_000 },
+  // Hosted requests allow a sleeping free backend up to 60 seconds to respond.
+  expect: { timeout: 60_000 },
   use: {
     baseURL: process.env.MOBILE_BASE_URL ?? "http://127.0.0.1:3005",
     trace: "off",

@@ -44,3 +44,16 @@ from v2.0.2 remain applicable. Hosted results are recorded in deployment-state.j
 Before deployment, all 20 mobile browser checks passed against the populated
 local API, including iPhone WebKit. All 13 integration/accessibility regressions
 also passed; 52 frontend unit checks passed (five optional checks skipped).
+
+The initial parallel hosted runs hit two 20-second assertions (iPhone search and
+matching), with no recorded server error. Isolated iPhone search subsequently
+completed in about 4.5 seconds and its complete touch journey passed. Hosted
+network-backed assertions allow 60 seconds, matching the application's bounded
+request deadline; this is not a claim of consistently fast responses.
+
+All 20 checks then passed against the public production build in 1.6 minutes.
+The complete 13-check hosted integration/accessibility suite then passed in
+1.5 minutes, including manual matching and synthetic session deletion.
+The deployed viewport includes `viewport-fit=cover` and does not disable zoom.
+Vercel production deployment `dpl_HFDQme5xyLGSCnEFzkyMLRkKaNAv` serves frontend
+commit `dbf2c1e`; backend deployment remains unchanged from v2.0.2.

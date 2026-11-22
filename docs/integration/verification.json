@@ -1,14 +1,16 @@
 {
   "checked_on": "2026-11-23",
-  "status": "v2.0.2_public_https_and_english_providers_verified",
+  "status": "v2.0.3_public_mobile_verified_with_v2.0.2_english_provider_checks",
   "backend": { "passed": 443, "skipped": 2, "ruff": "passed", "mypy": "passed", "nonfatal_test_client_deprecation_warnings": 1 },
   "frontend": { "unit_passed": 52, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed", "next_version": "16.4.6", "zod_version": "4.6.7", "npm_audit_findings": 0, "audit_checked_on": "2026-11-22" },
   "browser": {
     "inherited_fixture_suite": { "passed": 44, "skipped": 1 },
     "live_sqlite_integration": { "passed": 13, "skipped": 0, "checked_on": "2026-11-22" },
     "optimized_production_frontend_with_live_sqlite_api": { "passed": 10, "skipped": 0 },
-    "public_https_with_hosted_postgresql": { "passed": 13, "skipped": 0, "reported_duration": "1.3m" },
+    "public_https_with_hosted_postgresql": { "passed": 13, "skipped": 0, "reported_duration": "1.5m" },
     "additional_live_groq_journey": "passed: extracted age/state, editable review, confirmation, preliminary matches, synthetic session deletion HTTP 204",
+    "mobile_local": { "passed": 20, "skipped": 0 },
+    "mobile_public_https": { "passed": 20, "skipped": 0, "reported_duration": "1.6m", "engines": ["Chromium", "WebKit"], "viewports_px": [[320, 640], [412, 839], [390, 664], [750, 342]], "locales_checked": ["en", "hi", "kn"] },
     "public_accessibility_widths_px": [320, 1280],
     "inherited_journey_widths_px": [320, 375, 390, 768, 1024, 1280, 1440]
   },
@@ -25,6 +27,7 @@
     "Live Supabase authentication and account restoration",
     "Live email provider",
     "Voice in every supported language and real microphone/device combinations (synthetic English hosted TTS/STT passed)",
+    "Physical mobile devices, OS keyboards and nonzero hardware safe-area insets (browser emulation and CSS spacing verified)",
     "Current official policy, eligibility, application links and deadlines for imported records"
   ],
   "remote_repositories_modified": true,
