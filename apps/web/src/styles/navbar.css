@@ -1,5 +1,5 @@
 /* Site navigation: sticky glass bar, three primary links, language, CTA, mobile drawer.
-   Colours come from the theme tokens in globals.css (teal #035352 on Sidecar Yellow). */
+   Colours come from the theme tokens in globals.css (teal #a04100 on Sidecar Yellow). */
 
 .site-header {
   --nav-height: 72px;

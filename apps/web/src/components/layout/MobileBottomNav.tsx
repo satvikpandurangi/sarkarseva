@@ -12,14 +12,17 @@ import {
 } from "lucide-react";
 import { useMessages } from "@/i18n/client";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/i18n/client";
+import { catalogueMessages } from "@/features/catalogue/messages";
 
 export function MobileBottomNav() {
   const pathname = usePathname();
   const m = useMessages();
+  const { locale } = useI18n();
 
   const items = [
     { href: "/", label: m.nav.home, icon: Home },
-    { href: "/discover", label: m.nav.discover, icon: Compass },
+    { href: "/catalogue", label: catalogueMessages[locale].browse, icon: Compass },
     { href: "/recommendations", label: m.nav.matches, icon: Sparkles },
     { href: "/dashboard", label: m.nav.dashboard, icon: LayoutDashboard },
     { href: "/saved", label: m.nav.saved, icon: Bookmark },

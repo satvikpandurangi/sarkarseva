@@ -36,7 +36,7 @@ export function ConfirmProfileActions({
           busy={busy === "confirm"}
           disabled={busy !== null}
           aria-label={confirmAriaLabel}
-          className="bg-[#165541] hover:bg-[#102A24] text-white font-bold px-6 py-3 rounded-full shadow-md shadow-[#165541]/20 transition-all hover:-translate-y-0.5 justify-center"
+          className="bg-[#a04100] hover:bg-[#1a1a2e] text-white font-bold px-6 py-3 rounded-full shadow-md shadow-[#a04100]/20 transition-all hover:-translate-y-0.5 justify-center"
         >
           <span>{t.continueMatching}</span>
           <ArrowRight size={17} aria-hidden="true" />
@@ -48,7 +48,7 @@ export function ConfirmProfileActions({
             variant="quiet"
             disabled={busy !== null}
             onClick={onEditMessage}
-            className="text-xs font-semibold text-[#165541] hover:text-[#102A24] justify-center"
+            className="text-xs font-semibold text-[#a04100] hover:text-[#1a1a2e] justify-center"
           >
             <MessageSquare size={14} aria-hidden="true" />
             <span>{t.editOriginalMessage}</span>

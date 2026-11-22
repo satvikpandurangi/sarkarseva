@@ -3,19 +3,19 @@
 @import "../styles/glass.css";
 @import "../styles/animations.css";
 @theme {
-  --color-cream: #faf4dc;
+  --color-cream: #ffffff;
   /* Remap Tailwind palettes used in components onto the teal/yellow theme. */
-  --color-emerald-50: #e6f0ec;
-  --color-emerald-100: #cfe3dd;
-  --color-emerald-200: #a6cdc5;
-  --color-emerald-300: #79b2a9;
-  --color-emerald-400: #3f8c86;
-  --color-emerald-500: #14706d;
-  --color-emerald-600: #035352;
-  --color-emerald-700: #024241;
-  --color-emerald-800: #023635;
-  --color-emerald-900: #022c2b;
-  --color-emerald-950: #011f1e;
+  --color-emerald-50: #fff7f0;
+  --color-emerald-100: #ffe5d1;
+  --color-emerald-200: #f5ceb1;
+  --color-emerald-300: #eba775;
+  --color-emerald-400: #c26724;
+  --color-emerald-500: #a04100;
+  --color-emerald-600: #a04100;
+  --color-emerald-700: #823400;
+  --color-emerald-800: #582400;
+  --color-emerald-900: #1a1a2e;
+  --color-emerald-950: #10101f;
   --color-teal-50: var(--color-emerald-50);
   --color-teal-100: var(--color-emerald-100);
   --color-teal-200: var(--color-emerald-200);
@@ -49,43 +49,43 @@
   --color-cyan-800: var(--color-emerald-800);
   --color-cyan-900: var(--color-emerald-900);
   --color-cyan-950: var(--color-emerald-950);
-  --color-slate-50: #faf4dc;
-  --color-slate-100: #f3e8bc;
-  --color-slate-200: #e9dca4;
-  --color-slate-300: #d8c98a;
-  --color-slate-400: #5e6b62;
-  --color-slate-500: #4f6461;
-  --color-slate-600: #3d5654;
-  --color-slate-700: #2a4644;
-  --color-slate-800: #133a39;
-  --color-slate-900: #022c2b;
-  --color-slate-950: #011f1e;
+  --color-slate-50: #ffffff;
+  --color-slate-100: #faf9f5;
+  --color-slate-200: #fff3e8;
+  --color-slate-300: #e4dfda;
+  --color-slate-400: #62616c;
+  --color-slate-500: #62616c;
+  --color-slate-600: #47464c;
+  --color-slate-700: #3d3d5c;
+  --color-slate-800: #25253e;
+  --color-slate-900: #1a1a2e;
+  --color-slate-950: #10101f;
 }
 :root {
-  --bg: #f3e8bc;
-  --surface: #faf4dc;
-  --ink: #022c2b;
-  --muted: #3d5654;
-  --secondary-ink: #3d5654;
-  --sage-ink: #3d5654;
-  --primary: #035352;
-  --primary-hover: #024241;
-  --deep: #024241;
-  --accent: #0a6b69;
-  /* #0a6b69 is 4.26:1 on ivory; use this shade for text under 18px (4.66:1). */
-  --accent-ink: #0a6b69;
+  --bg: #faf9f5;
+  --surface: #ffffff;
+  --ink: #1a1a2e;
+  --muted: #47464c;
+  --secondary-ink: #47464c;
+  --sage-ink: #47464c;
+  --primary: #a04100;
+  --primary-hover: #823400;
+  --deep: #823400;
+  --accent: #a04100;
+  /* #a04100 is 4.26:1 on ivory; use this shade for text under 18px (4.66:1). */
+  --accent-ink: #a04100;
   --space: 8px;
   --radius: 20px;
   --radius-lg: 24px;
   --radius-sm: 12px;
-  --sage: #e9dca4;
-  --olive: #789532;
-  --lime: #dff2a2;
-  --line: #d8c98a;
-  --glass-bg: rgb(250 244 220 / 72%);
+  --sage: #fff3e8;
+  --olive: #a04100;
+  --lime: #ffe5d1;
+  --line: #e4dfda;
+  --glass-bg: rgb(255 255 255 / 72%);
   --glass-border: rgb(255 255 255 / 65%);
-  --glass-shadow: 0 12px 40px rgb(2 66 65 / 6%);
-  --shadow-lift: 0 18px 48px rgb(2 66 65 / 10%);
+  --glass-shadow: 0 12px 40px rgb(26 26 46 / 6%);
+  --shadow-lift: 0 18px 48px rgb(26 26 46 / 10%);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --duration: 200ms;
   --text-display: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
@@ -106,7 +106,7 @@ body {
   color: var(--ink);
   /* Inter has no Indic glyphs; these system faces render Hindi and Kannada. */
   font-family:
-    "Inter Variable", "Noto Sans Devanagari", "Noto Sans Kannada", "Nirmala UI",
+    "DM Sans Variable", "Noto Sans Devanagari", "Noto Sans Kannada", "Nirmala UI",
     "Kohinoor Devanagari", "Kannada Sangam MN", system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.65;
@@ -147,7 +147,7 @@ button:disabled {
   min-height: 48px;
   border: 1px solid rgb(216 201 138 / 80%);
   border-radius: 14px;
-  background: rgb(250 244 220 / 78%);
+  background: rgb(255 255 255 / 78%);
   color: var(--ink);
   padding: 11px 16px 11px 46px;
   font-size: 14px;
@@ -157,20 +157,20 @@ button:disabled {
     box-shadow 180ms var(--ease);
 }
 .auth-input::placeholder {
-  color: #5e6b62;
+  color: #62616c;
 }
 .auth-input.auth-input-with-action {
   padding-right: 52px;
 }
 .auth-input:hover {
-  border-color: rgb(3 83 82 / 45%);
+  border-color: rgb(160 65 0 / 45%);
   background: var(--surface);
 }
 .auth-input:focus-visible {
   border-color: var(--primary);
   outline: none;
   background: var(--surface);
-  box-shadow: 0 0 0 3px rgb(3 83 82 / 16%);
+  box-shadow: 0 0 0 3px rgb(160 65 0 / 16%);
 }
 @media (max-width: 639px) {
   .auth-shell {
@@ -322,7 +322,7 @@ select.input {
   color: var(--muted);
 }
 .glass {
-  background: rgba(250, 244, 220, 0.76);
+  background: rgba(255, 255, 255, 0.76);
   backdrop-filter: blur(16px) saturate(125%);
   border: 1px solid rgba(255, 255, 255, 0.82);
   box-shadow: 0 12px 40px rgba(19, 43, 29, 0.06);
@@ -347,7 +347,7 @@ select.input {
   max-width: 100%;
 }
 .badge.neutral {
-  background: #e9dca4;
+  background: #fff3e8;
   color: #4c5d51;
 }
 .badge.success {
@@ -422,7 +422,7 @@ select.input {
 }
 footer .disclaimer,
 [role="contentinfo"] .disclaimer {
-  color: #d8c98a;
+  color: #e4dfda;
 }
 .reading-page {
   max-width: 780px;
@@ -440,7 +440,7 @@ footer .disclaimer,
 }
 .skeleton {
   height: 150px;
-  background: #e9dca4;
+  background: #fff3e8;
   border-radius: 16px;
   animation: pulse 1.2s ease-in-out infinite;
 }
@@ -630,7 +630,7 @@ footer .disclaimer,
 }
 .composer-shell {
   padding: 30px;
-  background: rgba(250, 244, 220, 0.9);
+  background: rgba(255, 255, 255, 0.9);
 }
 .composer-shell h2 {
   font-size: 24px;
@@ -641,7 +641,7 @@ footer .disclaimer,
 }
 .composer-shell .textarea {
   border: 1px solid var(--line);
-  background: #faf4dc;
+  background: #ffffff;
   padding: 20px;
   min-height: 154px;
   font-size: 15px;
@@ -714,7 +714,7 @@ footer .disclaimer,
   font-weight: 520;
 }
 .path-panel > p {
-  color: #3d5654;
+  color: #47464c;
   font-size: 13px;
   max-width: 340px;
   margin-top: 16px;
@@ -747,7 +747,7 @@ footer .disclaimer,
 }
 .path-list p {
   font-size: 12px;
-  color: #3d5654;
+  color: #47464c;
   margin-top: 5px;
 }
 .path-footer {
@@ -1020,7 +1020,7 @@ footer .disclaimer,
 .benefit-line {
   margin: 20px 0;
   padding: 16px;
-  background: #faf4dc;
+  background: #ffffff;
   border-radius: 12px;
 }
 .benefit-line > span {
@@ -1042,7 +1042,7 @@ footer .disclaimer,
   display: flex;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid #e9dca4;
+  border-bottom: 1px solid #fff3e8;
 }
 .rule-icon {
   margin-top: 3px;
@@ -1461,7 +1461,7 @@ footer .disclaimer,
 .readiness-track {
   height: 5px;
   border-radius: 999px;
-  background: #e9dca4;
+  background: #fff3e8;
   margin: 24px 0 4px;
   overflow: hidden;
 }
@@ -1609,10 +1609,10 @@ h3 {
   margin-top: 8px;
 }
 .glass {
-  background: rgb(250 244 220 / 76%);
-  border: 1px solid rgb(2 66 65 / 12%);
+  background: rgb(255 255 255 / 76%);
+  border: 1px solid rgb(26 26 46 / 12%);
   border-radius: var(--radius);
-  box-shadow: 0 8px 32px rgb(2 66 65 / 5%);
+  box-shadow: 0 8px 32px rgb(26 26 46 / 5%);
   padding: 24px;
 }
 .panel {
@@ -1641,7 +1641,7 @@ h3 {
   border: 1px dashed #8c7e4a;
   border-radius: var(--radius);
   padding: 32px;
-  background: rgb(250 244 220 / 55%);
+  background: rgb(255 255 255 / 55%);
 }
 .empty h2 {
   font-size: 20px;
@@ -1711,9 +1711,9 @@ section[id] {
 }
 .composer-shell {
   padding: 24px;
-  background: rgb(250 244 220 / 78%);
-  border: 1px solid rgb(2 66 65 / 15%);
-  box-shadow: 0 8px 28px rgb(2 66 65 / 5%);
+  background: rgb(255 255 255 / 78%);
+  border: 1px solid rgb(26 26 46 / 15%);
+  box-shadow: 0 8px 28px rgb(26 26 46 / 5%);
 }
 .composer-shell h2 {
   font-size: 22px;
@@ -2147,13 +2147,13 @@ section[id] {
   min-height: 18px;
 }
 .profile-review .input {
-  background: #faf4dc;
+  background: #ffffff;
 }
 .profile-review .alert {
   margin-top: 16px;
 }
 .profile-snapshot {
-  background: rgb(250 244 220 / 75%);
+  background: rgb(255 255 255 / 75%);
 }
 .profile-snapshot h3 {
   font-size: 20px;
@@ -2436,7 +2436,7 @@ section[id] {
 }
 .input:focus-visible {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgb(2 66 65 / 8%);
+  box-shadow: 0 0 0 4px rgb(26 26 46 / 8%);
 }
 
 .radio-option:focus-within {
@@ -2452,7 +2452,7 @@ section[id] {
   height: auto;
   min-height: 180px;
   border: 1px solid var(--line);
-  background: rgb(250 244 220 / 75%);
+  background: rgb(255 255 255 / 75%);
   border-radius: var(--radius);
   padding: 24px;
   display: grid;
@@ -2462,7 +2462,7 @@ section[id] {
 .skeleton-line {
   display: block;
   border-radius: 5px;
-  background: #d8c98a;
+  background: #e4dfda;
   height: 10px;
   width: 100%;
   animation: pulse 1.4s ease-in-out infinite;
@@ -2509,7 +2509,7 @@ section[id] {
   .scheme-card:hover,
   .match-card:hover {
     border-color: #b8cbbd;
-    box-shadow: 0 6px 20px rgb(2 66 65 / 4%);
+    box-shadow: 0 6px 20px rgb(26 26 46 / 4%);
   }
   .category-chip:hover {
     border-color: #91ae97;

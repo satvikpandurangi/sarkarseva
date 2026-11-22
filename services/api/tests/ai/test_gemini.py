@@ -235,6 +235,17 @@ def test_supported_profile_locales(locale: SpeechLanguage, monkeypatch: pytest.M
         b'{"candidates":[null]}',
         b'{"candidates":[{"finishReason":"STOP","content":null}]}',
     ],
+    ids=[
+        "non-json",
+        "empty",
+        "oversized",
+        "boolean-age",
+        "invented-evidence",
+        "extra-approval",
+        "truncated",
+        "null-candidate",
+        "null-content",
+    ],
 )
 def test_invalid_or_injected_output_is_unavailable(
     monkeypatch: pytest.MonkeyPatch, raw: bytes

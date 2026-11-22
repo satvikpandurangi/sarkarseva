@@ -15,23 +15,23 @@ export function Badge({
 }: BadgeProps) {
   const toneClasses: Record<string, string> = {
     neutral:
-      "bg-cream/80 text-[#022c2b] border-[#022c2b]/10 shadow-xs",
+      "bg-cream/80 text-[#1a1a2e] border-[#1a1a2e]/10 shadow-xs",
     success:
-      "bg-[#035352]/12 text-[#035352] border-[#035352]/25 shadow-xs",
+      "bg-[#a04100]/12 text-[#a04100] border-[#a04100]/25 shadow-xs",
     emerald:
-      "bg-[#035352]/12 text-[#035352] border-[#035352]/25 shadow-xs",
+      "bg-[#a04100]/12 text-[#a04100] border-[#a04100]/25 shadow-xs",
     warning:
-      "bg-[#7d5a2a]/15 text-[#644723] border-[#7d5a2a]/30 shadow-xs",
+      "bg-[#a04100]/15 text-[#823400] border-[#a04100]/30 shadow-xs",
     saffron:
-      "bg-[#7d5a2a]/15 text-[#644723] border-[#7d5a2a]/30 shadow-xs",
+      "bg-[#a04100]/15 text-[#823400] border-[#a04100]/30 shadow-xs",
     gold:
-      "bg-[#7d5a2a]/15 text-[#644723] border-[#7d5a2a]/30 shadow-xs",
+      "bg-[#a04100]/15 text-[#823400] border-[#a04100]/30 shadow-xs",
     danger:
       "bg-rose-100/90 text-rose-950 border-rose-300/80 shadow-xs",
     info:
-      "bg-[#204f4a]/10 text-[#204f4a] border-[#204f4a]/25 shadow-xs",
+      "bg-[#3d3d5c]/10 text-[#3d3d5c] border-[#3d3d5c]/25 shadow-xs",
     cyan:
-      "bg-[#204f4a]/10 text-[#204f4a] border-[#204f4a]/25 shadow-xs",
+      "bg-[#3d3d5c]/10 text-[#3d3d5c] border-[#3d3d5c]/25 shadow-xs",
   };
 
   const sizeClasses = {

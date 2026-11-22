@@ -29,14 +29,14 @@ export function ProfileProgressSummary({
     <div className="space-y-3 pb-5 border-b border-stone-200/80">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-[#165541]">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#a04100]">
             {t.confirmEyebrow}
           </p>
           <h2
             id="review-heading"
             ref={headingRef}
             tabIndex={-1}
-            className="text-2xl sm:text-3xl font-extrabold text-[#102A24] tracking-tight mt-1 outline-none"
+            className="text-2xl sm:text-3xl font-extrabold text-[#1a1a2e] tracking-tight mt-1 outline-none"
           >
             {t.confirmTitle}
           </h2>
@@ -54,16 +54,16 @@ export function ProfileProgressSummary({
         </Badge>
       </div>
 
-      <p className="text-sm text-[#3D4B44] max-w-2xl leading-relaxed">
+      <p className="text-sm text-[#47464c] max-w-2xl leading-relaxed">
         {t.confirmLead}
       </p>
 
       {/* Dynamic profile summary pill */}
       <div
-        className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-[#E7EDE7]/70 border border-[#165541]/15 text-xs font-semibold text-[#102A24]"
+        className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-[#fff3e8]/70 border border-[#a04100]/15 text-xs font-semibold text-[#1a1a2e]"
         aria-live="polite"
       >
-        <Sparkles size={13} className="text-[#8A6020] shrink-0" aria-hidden="true" />
+        <Sparkles size={13} className="text-[#a04100] shrink-0" aria-hidden="true" />
         <span>{summaryText}</span>
       </div>
     </div>

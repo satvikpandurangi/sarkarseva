@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { RagTester } from "@/features/rag/RagTester";
 
 export const metadata: Metadata = {
-  title: "Local RAG test — Yojana Saathi",
+  title: "Local RAG test — SarkarSeva",
   robots: { index: false, follow: false },
 };
 

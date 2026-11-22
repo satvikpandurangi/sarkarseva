@@ -17,9 +17,9 @@ export function PageContainer({
       {ambientGlow && (
         <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
           {/* Subtle Sage Mist wash at top */}
-          <div className="absolute -top-32 left-1/4 w-[700px] h-[500px] rounded-full bg-[#e9dca4]/60 blur-[120px]" />
+          <div className="absolute -top-32 left-1/4 w-[700px] h-[500px] rounded-full bg-[#fff3e8]/60 blur-[120px]" />
           {/* Subtle warm champagne accent top-right */}
-          <div className="absolute top-10 right-0 w-[500px] h-[450px] rounded-full bg-[#D8C5A1]/20 blur-[100px]" />
+          <div className="absolute top-10 right-0 w-[500px] h-[450px] rounded-full bg-[#f6d9c3]/20 blur-[100px]" />
         </div>
       )}
       {children}

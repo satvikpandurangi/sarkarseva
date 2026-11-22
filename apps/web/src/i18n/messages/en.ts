@@ -5,24 +5,24 @@
  */
 export const en = {
   meta: {
-    title: "yojana saathi — Government schemes, made simple.",
+    title: "SarkarSeva — Government schemes, made simple.",
     description:
       "Discover government support, understand the conditions, and prepare your next step. Independent preliminary guidance.",
-    discover: "Discover schemes — yojana saathi",
-    eligibility: "Eligibility checks — yojana saathi",
+    discover: "Discover schemes — SarkarSeva",
+    eligibility: "Eligibility checks — SarkarSeva",
     eligibilityDescription:
       "Detailed eligibility criteria, rule results and preconditions.",
-    profile: "My profile — yojana saathi",
+    profile: "My profile — SarkarSeva",
     profileDescription:
       "Review and edit your profile details for scheme matching.",
-    saved: "Saved schemes — yojana saathi",
+    saved: "Saved schemes — SarkarSeva",
     savedDescription:
       "Your bookmarked government schemes and application checklists.",
   },
   dashboard: {
     saveScheme: "Save scheme",
     removeSaved: "Remove saved scheme",
-    metaTitle: "My dashboard — yojana saathi",
+    metaTitle: "My dashboard — SarkarSeva",
     title: "Your scheme journey, together.",
     lead: "Review your details, understand your scheme checks and prepare your next step.",
     workspace: "Your workspace",
@@ -143,7 +143,7 @@ export const en = {
   nav: {
     dashboard: "Dashboard",
     skipToContent: "Skip to content",
-    homeLink: "yojana saathi home",
+    homeLink: "SarkarSeva home",
     mainNavigation: "Main navigation",
     home: "Home",
     discover: "Discover",
@@ -159,7 +159,7 @@ export const en = {
     closeNavigation: "Close navigation",
   },
   auth: {
-    eyebrow: "Your Yojana Saathi account",
+    eyebrow: "Your SarkarSeva account",
     signInTitle: "Welcome back",
     signInLead: "Sign in to continue your saved scheme journey and profile.",
     signUpTitle: "Create your account",
@@ -184,7 +184,7 @@ export const en = {
     signUp: "Create an account",
     createAccount: "Create account",
     submitting: "Please wait…",
-    noAccount: "New to Yojana Saathi?",
+    noAccount: "New to SarkarSeva?",
     haveAccount: "Already have an account?",
     checkEmail:
       "Account created. Check your email and confirm your address before signing in.",
@@ -231,7 +231,7 @@ export const en = {
     privacy: "Privacy policy",
     disclaimer: "Disclaimer",
     nationalPortal: "National Portal of India",
-    copyright: "{year} yojana saathi · Independent preliminary guidance",
+    copyright: "{year} SarkarSeva · Independent preliminary guidance",
   },
   mock: {
     label: "Mock mode",
@@ -412,7 +412,7 @@ export const en = {
       },
     },
     benefits: {
-      title: "What yojana saathi helps with",
+      title: "What SarkarSeva helps with",
       items: [
         {
           title: "Find schemes for your situation",
@@ -494,7 +494,7 @@ export const en = {
           text: "Where tracking is available, keep your reference number and check with the responsible authority.",
         },
       ],
-      note: "Yojana Saathi provides guidance and does not submit or approve government applications.",
+      note: "SarkarSeva provides guidance and does not submit or approve government applications.",
       link: "Explore scheme guidance",
     },
   },
@@ -718,7 +718,7 @@ export const en = {
     noSteps:
       "Verified application steps are unavailable. Please confirm the process with the official authority.",
     portalNote:
-      "Applications take place on the official portal. Yojana Saathi does not submit applications.",
+      "Applications take place on the official portal. SarkarSeva does not submit applications.",
     sourcesEyebrow: "Trace it to the source",
     sources: "Official sources",
     sourcesNote: "Check the original policy and its latest updates.",
@@ -783,7 +783,7 @@ export const en = {
   about: {
     title: "Support starts with understanding.",
     intro:
-      "yojana saathi is an independent project that helps citizens discover government schemes, understand checked conditions and prepare application documents.",
+      "SarkarSeva is an independent project that helps citizens discover government schemes, understand checked conditions and prepare application documents.",
     aiTitle: "AI assists. Rules explain.",
     aiText:
       "AI can extract details from your description. You review and correct them before rule-based matching. Missing details stay unknown, and ambiguous conditions need manual verification.",
@@ -794,7 +794,7 @@ export const en = {
   disclaimerPage: {
     title: "Preliminary guidance, clear limits.",
     intro:
-      "yojana saathi is independent and is not an official government service. Government portals and authorities make final eligibility and approval decisions.",
+      "SarkarSeva is independent and is not an official government service. Government portals and authorities make final eligibility and approval decisions.",
     matchTitle: "What a match means",
     matchText:
       "“All checked conditions met” means that the available verified rules passed for your confirmed profile. It is not a guarantee of eligibility or approval. Unknown and manually reviewed conditions require further verification.",
@@ -879,7 +879,7 @@ export const en = {
     listeningHint:
       "Listening… recording stops automatically when you finish speaking.",
     privacyNote:
-      "Your recording is sent to Sarvam AI and is not saved by Yojana Saathi.",
+      "Your recording is sent to Sarvam AI and is not saved by SarkarSeva.",
     readAloud: "Read aloud",
     stopAudio: "Stop audio",
     translatedAudio: "AI-translated audio; check the original text.",
@@ -893,7 +893,7 @@ export const en = {
     },
   },
   guidePage: {
-    meta: "Application guide — yojana saathi",
+    meta: "Application guide — SarkarSeva",
     metaDescription:
       "How to prepare a government scheme application: documents, steps and official portals.",
     eyebrow: "Application guide",

@@ -3,17 +3,17 @@ import type { Messages } from "./en";
 /** Hindi. Scheme names, rules and source documents from the API stay as published. */
 export const hi: Messages = {
   meta: {
-    title: "yojana saathi — सरकारी योजनाएँ, आसान भाषा में।",
+    title: "SarkarSeva — सरकारी योजनाएँ, आसान भाषा में।",
     description:
       "सरकारी सहायता खोजें, शर्तें समझें और अगले कदम की तैयारी करें। स्वतंत्र प्रारंभिक मार्गदर्शन।",
-    discover: "योजनाएँ खोजें — yojana saathi",
-    eligibility: "पात्रता जाँच — yojana saathi",
+    discover: "योजनाएँ खोजें — SarkarSeva",
+    eligibility: "पात्रता जाँच — SarkarSeva",
     eligibilityDescription:
       "विस्तृत पात्रता शर्तें, नियमों के परिणाम और पूर्व-शर्तें।",
-    profile: "मेरी प्रोफ़ाइल — yojana saathi",
+    profile: "मेरी प्रोफ़ाइल — SarkarSeva",
     profileDescription:
       "योजना मिलान के लिए अपनी प्रोफ़ाइल जानकारी देखें और बदलें।",
-    saved: "सहेजी गई योजनाएँ — yojana saathi",
+    saved: "सहेजी गई योजनाएँ — SarkarSeva",
     savedDescription: "आपकी सहेजी गई सरकारी योजनाएँ और आवेदन चेकलिस्ट।",
   },
   dashboard: {
@@ -139,7 +139,7 @@ export const hi: Messages = {
   nav: {
     dashboard: "डैशबोर्ड",
     skipToContent: "मुख्य सामग्री पर जाएँ",
-    homeLink: "yojana saathi होम",
+    homeLink: "SarkarSeva होम",
     mainNavigation: "मुख्य नेविगेशन",
     home: "होम",
     discover: "खोजें",
@@ -226,7 +226,7 @@ export const hi: Messages = {
     privacy: "गोपनीयता नीति",
     disclaimer: "अस्वीकरण",
     nationalPortal: "भारत का राष्ट्रीय पोर्टल",
-    copyright: "{year} yojana saathi · स्वतंत्र प्रारंभिक मार्गदर्शन",
+    copyright: "{year} SarkarSeva · स्वतंत्र प्रारंभिक मार्गदर्शन",
   },
   mock: {
     label: "मॉक मोड",
@@ -402,7 +402,7 @@ export const hi: Messages = {
       },
     },
     benefits: {
-      title: "yojana saathi किसमें मदद करता है",
+      title: "SarkarSeva किसमें मदद करता है",
       items: [
         {
           title: "अपनी स्थिति के अनुसार योजनाएँ",
@@ -483,7 +483,7 @@ export const hi: Messages = {
           text: "जहाँ ट्रैकिंग उपलब्ध है, अपना संदर्भ नंबर संभालकर रखें और संबंधित विभाग से जाँच करें।",
         },
       ],
-      note: "yojana saathi मार्गदर्शन देता है; यह सरकारी आवेदन जमा या स्वीकृत नहीं करता।",
+      note: "SarkarSeva मार्गदर्शन देता है; यह सरकारी आवेदन जमा या स्वीकृत नहीं करता।",
       link: "योजना मार्गदर्शन देखें",
     },
   },
@@ -705,7 +705,7 @@ export const hi: Messages = {
     noSteps:
       "सत्यापित आवेदन चरण उपलब्ध नहीं हैं। कृपया आधिकारिक विभाग से प्रक्रिया की पुष्टि करें।",
     portalNote:
-      "आवेदन आधिकारिक पोर्टल पर होते हैं। yojana saathi आवेदन जमा नहीं करता।",
+      "आवेदन आधिकारिक पोर्टल पर होते हैं। SarkarSeva आवेदन जमा नहीं करता।",
     sourcesEyebrow: "स्रोत तक पहुँचें",
     sources: "आधिकारिक स्रोत",
     sourcesNote: "मूल नीति और उसके नए अपडेट देखें।",
@@ -770,7 +770,7 @@ export const hi: Messages = {
   about: {
     title: "सहायता समझ से शुरू होती है।",
     intro:
-      "yojana saathi एक स्वतंत्र परियोजना है जो नागरिकों को सरकारी योजनाएँ खोजने, जाँची गई शर्तें समझने और आवेदन के दस्तावेज़ तैयार करने में मदद करती है।",
+      "SarkarSeva एक स्वतंत्र परियोजना है जो नागरिकों को सरकारी योजनाएँ खोजने, जाँची गई शर्तें समझने और आवेदन के दस्तावेज़ तैयार करने में मदद करती है।",
     aiTitle: "AI मदद करता है। नियम समझाते हैं।",
     aiText:
       "AI आपके विवरण से जानकारी निकाल सकता है। नियम-आधारित मिलान से पहले आप उसकी समीक्षा करके उसे ठीक करते हैं। छूटी हुई जानकारी अज्ञात रहती है, और अस्पष्ट शर्तों का मैन्युअल सत्यापन ज़रूरी है।",
@@ -781,7 +781,7 @@ export const hi: Messages = {
   disclaimerPage: {
     title: "प्रारंभिक मार्गदर्शन, साफ़ सीमाएँ।",
     intro:
-      "yojana saathi स्वतंत्र है और कोई आधिकारिक सरकारी सेवा नहीं है। पात्रता और स्वीकृति के अंतिम निर्णय सरकारी पोर्टल और विभाग लेते हैं।",
+      "SarkarSeva स्वतंत्र है और कोई आधिकारिक सरकारी सेवा नहीं है। पात्रता और स्वीकृति के अंतिम निर्णय सरकारी पोर्टल और विभाग लेते हैं।",
     matchTitle: "मिलान का क्या मतलब है",
     matchText:
       "“जाँची गई सभी शर्तें पूरी” का मतलब है कि आपकी पुष्टि की गई प्रोफ़ाइल पर उपलब्ध सत्यापित नियम पूरे हुए। यह पात्रता या स्वीकृति की गारंटी नहीं है। अज्ञात और मैन्युअल समीक्षा वाली शर्तों का आगे सत्यापन ज़रूरी है।",
@@ -866,7 +866,7 @@ export const hi: Messages = {
     listeningHint:
       "सुन रहे हैं… आपके बोलना बंद करते ही रिकॉर्डिंग अपने आप रुक जाएगी।",
     privacyNote:
-      "आपकी रिकॉर्डिंग Sarvam AI को भेजी जाती है और yojana saathi इसे सहेजता नहीं है।",
+      "आपकी रिकॉर्डिंग Sarvam AI को भेजी जाती है और SarkarSeva इसे सहेजता नहीं है।",
     readAloud: "पढ़कर सुनाएँ",
     stopAudio: "ऑडियो रोकें",
     translatedAudio: "AI से अनुवादित ऑडियो; मूल पाठ ज़रूर जाँचें।",
@@ -879,7 +879,7 @@ export const hi: Messages = {
     },
   },
   guidePage: {
-    meta: "आवेदन गाइड — yojana saathi",
+    meta: "आवेदन गाइड — SarkarSeva",
     metaDescription:
       "सरकारी योजना के आवेदन की तैयारी कैसे करें: दस्तावेज़, चरण और आधिकारिक पोर्टल।",
     eyebrow: "आवेदन गाइड",

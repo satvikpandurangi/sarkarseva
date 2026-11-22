@@ -5,7 +5,7 @@ import { getMessages } from "@/i18n/server";
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getMessages();
   return {
-    title: `${m.auth.signUpTitle} — yojana saathi`,
+    title: `${m.auth.signUpTitle} — SarkarSeva`,
     description: m.auth.signUpLead,
   };
 }

@@ -15,7 +15,7 @@ def test_render_blueprint_configures_production_api_safely() -> None:
     assert service["runtime"] == "python"
     assert service["rootDir"] == "services/api"
     assert service["branch"] == "main"
-    assert service["healthCheckPath"] == "/health"
+    assert service["healthCheckPath"] == "/ready"
     assert service["startCommand"].startswith("alembic upgrade head && ")
     assert "--host 0.0.0.0 --port $PORT" in service["startCommand"]
 

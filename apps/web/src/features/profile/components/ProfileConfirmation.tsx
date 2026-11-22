@@ -95,10 +95,10 @@ export function ProfileConfirmation({
           {extractedFields.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2 flex-wrap">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#165541]">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#a04100]">
                   {t.extractedSectionTitle}
                 </h3>
-                <span className="text-xs text-[#3D4B44]">
+                <span className="text-xs text-[#47464c]">
                   {t.extractedSectionLead}
                 </span>
               </div>
@@ -122,10 +122,10 @@ export function ProfileConfirmation({
           {missingEssentials.length > 0 && (
             <div className="space-y-3 pt-2 border-t border-stone-200/70">
               <div>
-                <h3 className="text-sm font-bold text-[#102A24]">
+                <h3 className="text-sm font-bold text-[#1a1a2e]">
                   {t.missingSectionTitle}
                 </h3>
-                <p className="text-xs text-[#3D4B44] mt-0.5">
+                <p className="text-xs text-[#47464c] mt-0.5">
                   {t.missingSectionLead}
                 </p>
               </div>
@@ -173,11 +173,11 @@ export function ProfileConfirmation({
 
       {/* Confirmation feedback with next step recommendation link */}
       {p.confirmed && (
-        <div className="p-4 sm:p-5 rounded-2xl bg-[#E7EDE7]/90 border border-[#165541]/30 flex items-center justify-between gap-4 flex-wrap animate-in fade-in duration-200">
-          <div className="flex items-center gap-2.5 text-sm text-[#102A24] font-medium">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#fff3e8]/90 border border-[#a04100]/30 flex items-center justify-between gap-4 flex-wrap animate-in fade-in duration-200">
+          <div className="flex items-center gap-2.5 text-sm text-[#1a1a2e] font-medium">
             <CheckCircle2
               size={19}
-              className="text-[#165541] shrink-0"
+              className="text-[#a04100] shrink-0"
               aria-hidden="true"
             />
             <span>{t.confirmedNotice}</span>
@@ -186,13 +186,13 @@ export function ProfileConfirmation({
           <div className="flex items-center gap-4 flex-wrap">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#165541] hover:text-[#102A24] underline underline-offset-4"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#a04100] hover:text-[#1a1a2e] underline underline-offset-4"
             >
               <span>{m.dashboard.openDashboard}</span>
             </Link>
             <Link
               href="/recommendations"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#165541] hover:text-[#102A24] underline underline-offset-4"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#a04100] hover:text-[#1a1a2e] underline underline-offset-4"
             >
               <span>{t.seeRecommendations}</span>
               <ArrowRight size={15} aria-hidden="true" />

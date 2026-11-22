@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 for (const hostname of ["localhost", "127.0.0.1"]) {
-  const origin = `http://${hostname}:${process.env.PLAYWRIGHT_PORT ?? "3000"}`;
+  const origin = `http://${hostname}:${process.env.PLAYWRIGHT_PORT ?? "3001"}`;
   test(`server-rendered navigation includes the dashboard on ${hostname}`, async ({
     browser,
   }) => {
@@ -18,6 +18,7 @@ for (const hostname of ["localhost", "127.0.0.1"]) {
         const nav = page.locator(".site-nav");
         await expect(nav.getByRole("link")).toHaveText([
           "Home",
+          "Browse schemes",
           "Discover",
           "Matches",
           "Dashboard",

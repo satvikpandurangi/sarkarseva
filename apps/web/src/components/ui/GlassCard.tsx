@@ -23,7 +23,7 @@ export function GlassCard({
     elevated:
       "bg-cream/92 backdrop-blur-2xl border border-white shadow-[0_20px_48px_-6px_rgba(2,44,43,0.08),0_8px_20px_-3px_rgba(2,44,43,0.04)]",
     subtle:
-      "bg-[#e9dca4]/50 backdrop-blur-md border border-[#e9dca4]/80 shadow-xs",
+      "bg-[#fff3e8]/50 backdrop-blur-md border border-[#fff3e8]/80 shadow-xs",
     ghost:
       "bg-cream/40 backdrop-blur-sm border border-white/60",
   };
@@ -31,13 +31,13 @@ export function GlassCard({
   const glowStyles = {
     none: "",
     emerald:
-      "hover:border-[#035352]/40 hover:shadow-[0_16px_36px_-6px_rgba(3,83,82,0.18)]",
+      "hover:border-[#a04100]/40 hover:shadow-[0_16px_36px_-6px_rgba(3,83,82,0.18)]",
     saffron:
-      "hover:border-[#7d5a2a]/40 hover:shadow-[0_16px_36px_-6px_rgba(182,138,69,0.18)]",
+      "hover:border-[#a04100]/40 hover:shadow-[0_16px_36px_-6px_rgba(182,138,69,0.18)]",
     cyan:
-      "hover:border-[#204f4a]/40 hover:shadow-[0_16px_36px_-6px_rgba(32,79,74,0.18)]",
+      "hover:border-[#3d3d5c]/40 hover:shadow-[0_16px_36px_-6px_rgba(32,79,74,0.18)]",
     indigo:
-      "hover:border-[#035352]/40 hover:shadow-[0_16px_36px_-6px_rgba(3,83,82,0.18)]",
+      "hover:border-[#a04100]/40 hover:shadow-[0_16px_36px_-6px_rgba(3,83,82,0.18)]",
   };
 
   return (

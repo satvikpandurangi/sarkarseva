@@ -31,11 +31,11 @@ export function ExtractedField({
   const isCorrected = status === "user_corrected";
 
   return (
-    <div className="p-4 rounded-2xl bg-white/70 border border-stone-200/80 shadow-xs hover:border-[#165541]/30 transition-colors space-y-2">
+    <div className="p-4 rounded-2xl bg-white/70 border border-stone-200/80 shadow-xs hover:border-[#a04100]/30 transition-colors space-y-2">
       <div className="flex items-center justify-between gap-2 flex-wrap">
         <label
           htmlFor={id}
-          className="text-xs font-bold text-[#102A24] tracking-tight"
+          className="text-xs font-bold text-[#1a1a2e] tracking-tight"
         >
           {m.fields[field]}
         </label>
@@ -43,8 +43,8 @@ export function ExtractedField({
         <span
           className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full ${
             isCorrected
-              ? "bg-[#165541]/10 text-[#165541] border border-[#165541]/20"
-              : "bg-stone-100 text-[#2E3C36] border border-stone-200/60"
+              ? "bg-[#a04100]/10 text-[#a04100] border border-[#a04100]/20"
+              : "bg-stone-100 text-[#47464c] border border-stone-200/60"
           }`}
 
         >

@@ -1,28 +1,67 @@
-# Yojana Saathi
+# SarkarSeva
 
-Yojana Saathi is an independent, source-backed assistant for discovering Indian
-government schemes and understanding application requirements. It provides
-preliminary guidance only; eligibility and approval are determined by the
-relevant government authority.
+An independent government-scheme reference and preparation app: SarkarSeva's
+cream/navy/saffron design with Yojana Saathi's profile, matching and curation API.
+Search 3,397 imported scheme records without an AI key or account; read original
+requirements, save records and prepare document checklists. English, Hindi and
+Kannada navigation is available; original dataset records remain in English.
 
-This repository is being implemented from the project specification in the
-provided documentation archive. Backend work lives under `services/api`.
+**Imported records are unverified, from a July 2025 dataset.** They are discovery
+leads, not current official policy or eligibility decisions. There is no government
+affiliation, application submission, approval prediction or simulated tracking.
+See [data provenance](docs/integration/DATA_PROVENANCE.md).
 
-## Backend quick start
+## Local startup (Windows PowerShell)
 
-```bash
+```powershell
 cd services/api
-python3.12 -m venv .venv
-.venv/bin/pip install -e '.[dev]'
-.venv/bin/uvicorn app.main:app --reload
+uv venv .venv --python 3.12
+uv pip install --python .venv/Scripts/python.exe -r requirements-dev.lock
+uv pip install --python .venv/Scripts/python.exe --no-deps -e .
+# Create .env from .env.example and choose the local SQLite URL in the runbook.
+.venv/Scripts/python.exe -m app.cli.fetch_dataset --output ../../data/schemes/updated_data.csv
+.venv/Scripts/python.exe -m app.cli.bootstrap ../../data/schemes/updated_data.csv --create-tables --report ../../docs/integration/dataset-import.json
+.venv/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-The health endpoint is available at `http://127.0.0.1:8000/health`.
+In another terminal:
 
-## Sarvam voice
+```powershell
+cd apps/web
+npm ci
+# Copy .env.example to .env.local; keep mode=live and optional Supabase values empty.
+npm run dev -- --port 3000
+```
 
-Set `SARVAM_API_KEY` in `services/api/.env` to enable speech-to-text,
-English/Hindi/Kannada profile extraction, and translated text-to-speech. The key
-stays on the API server. Browser recordings are sent to Sarvam for transcription
-and are not stored by Yojana Saathi. Add the same secret to Render for the
-deployed API.
+Open http://127.0.0.1:3000 . `/health` is process liveness; `/ready` checks the
+database and populated reference catalogue. Full setup, tests and deployment:
+[runbook](docs/integration/RUNBOOK.md).
+
+## Main routes
+
+- `/catalogue`: weighted keyword/synonym search, category and government-level filters.
+- `/catalogue/[slug]`: original benefits, conditions and application text, browser-saved preparation checklist.
+- `/assistant`: retrieved passages with record links; extractive search, not generative RAG.
+- `/discover`, `/profile`, `/recommendations`, `/dashboard`: confirmed facts and conservative preliminary matching.
+- `/saved`: browser-saved reference records and the existing reviewed-scheme workflow.
+- `/privacy`, `/disclaimer`, `/help`, `/guide`: data handling and application preparation.
+
+## Optional providers
+
+Core catalogue/search, manual profile entry, matching and checklists need no AI
+provider or authentication. Supabase Auth adds account profile restoration.
+Gemini/Sarvam add optional extraction/voice. Configure secrets only on the API,
+never in browser variables or committed files. Curator RAG stays protected; it is
+not a dependency of citizen search. Public provider routes require deployment
+rate limiting before paid provider keys are enabled.
+
+## Source projects and deployment status
+
+Built from the user-provided [SarkarSeva](https://github.com/satvikpandurangi/sarkarseva)
+and [Yojana Saathi](https://github.com/aryanbudke/Yojana-Saathi) repositories.
+See [provenance and attribution](docs/integration/DATA_PROVENANCE.md) and
+[integration progress](docs/integration/PROGRESS.md).
+
+Deployment targets are Vercel (root `apps/web`) and Render (root `services/api`),
+with PostgreSQL/pgvector. No account or hosted database has been connected in this
+checkout; local verification is not proof of a production deployment.

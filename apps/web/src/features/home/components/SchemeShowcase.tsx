@@ -27,17 +27,17 @@ export async function SchemeShowcase() {
           aria-hidden="true"
         />
         {/* Soft edge blend into porcelain canvas */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f3e8bc] via-[#f3e8bc]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f3e8bc] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#faf9f5] via-[#faf9f5]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f5] via-transparent to-transparent" />
       </div>
 
       {/* Script note with arrow */}
       <div className="absolute top-0 right-4 sm:right-10 z-10 hidden sm:block pointer-events-none select-none">
-        <span className="font-serif italic text-base sm:text-lg text-[#022c2b] tracking-wide rotate-[-3deg] inline-block font-semibold">
+        <span className="font-serif italic text-base sm:text-lg text-[#1a1a2e] tracking-wide rotate-[-3deg] inline-block font-semibold">
           {t.note}
         </span>
         <svg
-          className="w-5 h-5 text-[#022c2b]/70 ml-10 -mt-0.5"
+          className="w-5 h-5 text-[#1a1a2e]/70 ml-10 -mt-0.5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -84,11 +84,11 @@ export async function SchemeShowcase() {
               </div>
 
               <div className="flex items-baseline justify-between gap-2">
-                <h3 className="text-base font-bold text-[#022c2b] tracking-tight group-hover:text-[#035352] transition-colors flex items-center gap-1">
+                <h3 className="text-base font-bold text-[#1a1a2e] tracking-tight group-hover:text-[#a04100] transition-colors flex items-center gap-1">
                   <span>{scheme.shortName}</span>
                   <ArrowUpRight
                     size={14}
-                    className="text-slate-400 group-hover:text-[#035352] transition-colors"
+                    className="text-slate-400 group-hover:text-[#a04100] transition-colors"
                     aria-hidden="true"
                   />
                 </h3>
@@ -98,7 +98,7 @@ export async function SchemeShowcase() {
                 {text.fullName}
               </p>
 
-              <p className="text-[11px] font-semibold text-[#035352] flex items-center gap-1 mt-1 truncate">
+              <p className="text-[11px] font-semibold text-[#a04100] flex items-center gap-1 mt-1 truncate">
                 <Landmark size={12} className="shrink-0" aria-hidden="true" />
                 <span className="truncate">{text.authority}</span>
               </p>

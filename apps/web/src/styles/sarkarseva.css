@@ -1,0 +1,577 @@
+/* SarkarSeva's shared visual language, after inherited component styles. */
+:root {
+  --font-sans: "DM Sans Variable", "Nirmala UI", system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, "Nirmala UI", serif;
+  --bg: #faf9f5;
+  --surface: #fff;
+  --surface-muted: #f5f4f0;
+  --ink: #1a1a2e;
+  --muted: #47464c;
+  --primary: #a04100;
+  --primary-hover: #823400;
+  --line: #e4dfda;
+  --accent: #ff6b00;
+}
+body,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-sans);
+}
+h1,
+h2,
+.seva-wordmark em {
+  font-family: var(--font-serif);
+}
+h1 {
+  font-weight: 600;
+}
+.site-header,
+.site-header[data-scrolled] {
+  background: #fff;
+  backdrop-filter: none;
+  box-shadow: 0 2px 12px rgb(26 26 46 / 5%);
+}
+.site-header-inner {
+  max-width: 1280px;
+  padding-inline: 24px;
+  gap: 16px;
+}
+.site-nav-link {
+  font-size: 13px;
+  padding-inline: 9px;
+}
+.site-nav-link[aria-current="page"] {
+  color: var(--primary);
+}
+.site-actions {
+  gap: 10px;
+}
+.site-cta {
+  font-size: 13px;
+  padding-inline: 16px;
+}
+.brand {
+  gap: 10px;
+  letter-spacing: -0.5px;
+}
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #1a1a2e;
+  color: #ff8a32;
+  transform: none;
+  flex-shrink: 0;
+}
+.brand-mark svg {
+  width: 25px;
+  height: 25px;
+}
+.seva-wordmark {
+  font-size: 23px;
+  font-weight: 650;
+  line-height: 1;
+}
+.seva-wordmark em {
+  color: #a04100;
+  font-weight: 500;
+}
+.seva-wordmark small {
+  display: block;
+  font-size: 9px;
+  color: #62616c;
+  letter-spacing: 0.03em;
+  margin-top: 5px;
+  font-weight: 400;
+}
+footer .seva-wordmark em {
+  color: #ffb47c;
+}
+footer .seva-wordmark small {
+  color: #d9d7e0;
+}
+.seva-hero {
+  position: relative;
+  isolation: isolate;
+  text-align: center;
+  padding: 56px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: -32px;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    #ffe1ca 0%,
+    #fcf0e5 45%,
+    #faf9f5 80%
+  );
+}
+.seva-hero::before {
+  content: "";
+  width: min(540px, 90%);
+  aspect-ratio: 1;
+  border: 1px solid #f2c6a1;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-independence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e4dfda;
+  background: #fff9;
+  padding: 7px 15px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+.hero-independence svg {
+  color: #a04100;
+  flex-shrink: 0;
+}
+.seva-hero h1 {
+  font-size: clamp(36px, 4.7vw, 62px);
+  line-height: 1.13;
+  letter-spacing: -0.035em;
+}
+.seva-hero h1 em {
+  color: #a04100;
+  font-weight: 550;
+}
+.seva-hero-copy {
+  max-width: 650px;
+  color: #47464c;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-top: 25px;
+}
+.seva-search {
+  width: min(720px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 2px solid #fff3e8;
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 8px 7px 20px;
+  margin-top: 34px;
+  box-shadow: 0 4px 20px #1a1a2e0a;
+}
+.seva-search > svg {
+  color: #a04100;
+  flex-shrink: 0;
+}
+.seva-search input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  padding: 12px 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 15px;
+}
+.seva-search input:focus-visible {
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.seva-search button {
+  border: 0;
+  background: #a04100;
+  color: white;
+  border-radius: 999px;
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+}
+.seva-search button:hover {
+  background: #823400;
+}
+.seva-popular {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 25px;
+  font-size: 12px;
+}
+.seva-popular > span {
+  color: #47464c;
+  font-weight: 600;
+}
+.seva-popular a {
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid #eee5de;
+  border-radius: 999px;
+}
+.seva-popular a:hover {
+  border-color: #a04100;
+  color: #a04100;
+}
+.seva-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 30px;
+  font-size: 13px;
+}
+.text-link {
+  color: #a04100;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-underline-offset: 4px;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+.catalogue-page,
+.record-page,
+.assistant-page {
+  padding-block: 36px 60px;
+}
+.catalogue-page .page-heading,
+.assistant-page .page-heading {
+  max-width: 780px;
+}
+.catalogue-filters {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.catalogue-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 0;
+}
+.catalogue-query {
+  flex: 1 1 300px;
+}
+.catalogue-filters select,
+.search-field,
+.assistant-page textarea {
+  min-height: 46px;
+  border: 1px solid #cbc6c0;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+}
+.catalogue-filters select {
+  padding: 10px;
+  max-width: 245px;
+  font-size: 13px;
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  padding-inline: 12px;
+  gap: 10px;
+}
+.search-field svg {
+  color: #a04100;
+  flex-shrink: 0;
+}
+.search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  padding-block: 10px;
+  background: transparent;
+  font-size: 14px;
+}
+.reference-notice {
+  background: #fff3e8;
+  border: 1px solid #f0d8c5;
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: #67320e;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-block: 24px;
+}
+.catalogue-loading {
+  padding: 24px;
+}
+.catalogue-result-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-block: 24px;
+  font-size: 14px;
+}
+.catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.reference-card {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  overflow-wrap: anywhere;
+}
+.catalogue-grid .reference-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.reference-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #62616c;
+}
+.reference-meta span:first-child {
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f5f4f0;
+  color: #47464c;
+}
+.reference-card h2 {
+  font-size: 23px;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+.reference-card p {
+  font-size: 14px;
+  color: #47464c;
+  line-height: 1.75;
+}
+.catalogue-grid .reference-card > p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+.catalogue-grid .text-link {
+  margin-top: auto;
+  font-size: 13px;
+}
+.catalogue-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+.record-page > .page-heading {
+  margin-top: 28px;
+}
+.record-page .page-heading h1 {
+  font-size: clamp(30px, 3.4vw, 46px);
+  overflow-wrap: anywhere;
+  max-width: 950px;
+}
+.record-page .page-heading button {
+  margin-top: 20px;
+}
+.record-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.record-sections,
+.record-sidebar,
+.answer-results {
+  display: grid;
+  gap: 24px;
+}
+.record-sections h2,
+.record-sidebar h2 {
+  margin-bottom: 16px;
+}
+.record-text {
+  white-space: pre-wrap;
+}
+.record-sidebar fieldset {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin-block: 20px;
+}
+.document-check {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding-block: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.document-check input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: #a04100;
+}
+.custom-checklist-form {
+  display: grid;
+  gap: 10px;
+  margin-block: 20px;
+  font-size: 13px;
+}
+.custom-checklist-form .button {
+  justify-self: start;
+}
+.checklist-item {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+.checklist-item .document-check {
+  flex: 1;
+  min-width: 0;
+}
+.checklist-item > button {
+  padding: 6px;
+  margin-top: 9px;
+  font-size: 11px;
+  min-width: 0;
+}
+.record-sidebar details {
+  font-size: 13px;
+}
+.record-sidebar .text-link {
+  margin-top: 15px;
+  font-size: 13px;
+}
+.assistant-page {
+  max-width: 850px;
+  margin-inline: auto;
+}
+.assistant-page form {
+  display: grid;
+  gap: 16px;
+}
+.assistant-page textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 14px;
+  font-size: 15px;
+}
+.assistant-page form button {
+  justify-self: start;
+}
+.answer-results blockquote {
+  margin: 18px 0;
+  padding-left: 18px;
+  border-left: 3px solid #ffb47c;
+  color: #47464c;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.saved-references {
+  display: grid;
+  gap: 16px;
+}
+.saved-references ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.saved-references li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+@media (max-width: 1100px) {
+  .site-header-inner {
+    padding-inline: 16px;
+    gap: 8px;
+  }
+  .site-nav-link {
+    padding-inline: 6px;
+    font-size: 12px;
+  }
+  .site-cta {
+    padding-inline: 12px;
+  }
+}
+@media (max-width: 900px) {
+  .catalogue-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .record-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 639px) {
+  .seva-hero {
+    margin-inline: -20px;
+    padding: 42px 20px;
+  }
+  .seva-hero-copy {
+    font-size: 15px;
+  }
+  .hero-independence {
+    font-size: 10px;
+    padding-inline: 10px;
+  }
+  .seva-search {
+    gap: 8px;
+    padding-left: 13px;
+  }
+  .seva-search input {
+    font-size: 13px;
+  }
+  .seva-search button {
+    padding-inline: 16px;
+  }
+  .catalogue-grid {
+    grid-template-columns: 1fr;
+  }
+  .catalogue-filters {
+    padding: 16px;
+    gap: 12px;
+  }
+  .catalogue-filters label {
+    flex: 1 1 100%;
+  }
+  .catalogue-filters select {
+    max-width: 100%;
+    width: 100%;
+  }
+  .reference-card {
+    padding: 20px;
+  }
+  .saved-references li {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 374px) {
+  .seva-hero {
+    margin-inline: -16px;
+  }
+}

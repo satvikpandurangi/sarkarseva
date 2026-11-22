@@ -9,16 +9,19 @@ import { useMessages } from "@/i18n/client";
 import type { Messages } from "@/i18n/messages/en";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useAuth } from "@/features/auth/AuthProvider";
+import { catalogueMessages } from "@/features/catalogue/messages";
+import { useI18n } from "@/i18n/client";
 
 interface NavLink {
   href: string;
-  label: keyof Messages["nav"];
+  label: keyof Messages["nav"] | "catalogue";
   isActive: (path: string) => boolean;
 }
 
 /** Primary destinations; profile editing is available within the dashboard. */
 const navLinks: NavLink[] = [
   { href: "/", label: "home", isActive: (p) => p === "/" },
+  { href: "/catalogue", label: "catalogue", isActive: (p) => p.startsWith("/catalogue") || p === "/assistant" },
   {
     href: "/discover",
     label: "discover",
@@ -53,6 +56,8 @@ function subscribeToScroll(onChange: () => void) {
 
 export function Navbar() {
   const m = useMessages();
+  const { locale } = useI18n();
+  const catalogueLabel = catalogueMessages[locale].browse;
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading: authLoading, signOut } = useAuth();
@@ -115,7 +120,7 @@ export function Navbar() {
                 className="site-nav-link"
                 aria-current={active ? "page" : undefined}
               >
-                {m.nav[link.label]}
+                {link.label === "catalogue" ? catalogueLabel : m.nav[link.label]}
               </Link>
             );
           })}
@@ -197,7 +202,7 @@ export function Navbar() {
                       aria-current={active ? "page" : undefined}
                       onClick={close}
                     >
-                      <span>{m.nav[link.label]}</span>
+                      <span>{link.label === "catalogue" ? catalogueLabel : m.nav[link.label]}</span>
                       <ChevronRight size={18} aria-hidden="true" />
                     </Link>
                   </li>

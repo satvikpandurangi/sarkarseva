@@ -168,7 +168,7 @@ function AuthCard({ mode, onSubmit }: AuthCardProps) {
     <section className="auth-shell relative isolate mx-auto flex w-full max-w-5xl items-center justify-center overflow-hidden">
       <div
         aria-hidden="true"
-        className="absolute left-[8%] top-[14%] -z-10 h-64 w-64 rounded-full bg-[#dff2a2]/55 blur-3xl"
+        className="absolute left-[8%] top-[14%] -z-10 h-64 w-64 rounded-full bg-[#ffe5d1]/55 blur-3xl"
       />
       <div
         aria-hidden="true"
@@ -179,13 +179,13 @@ function AuthCard({ mode, onSubmit }: AuthCardProps) {
         <div className="relative hidden overflow-hidden bg-emerald-900 px-10 py-10 text-white md:flex md:flex-col md:justify-between">
           <div
             aria-hidden="true"
-            className="absolute -right-20 -top-20 h-64 w-64 rounded-full border-[44px] border-[#dff2a2]/15"
+            className="absolute -right-20 -top-20 h-64 w-64 rounded-full border-[44px] border-[#ffe5d1]/15"
           />
           <div className="brand relative flex items-center gap-3 text-xl font-semibold">
             <Brand />
           </div>
           <div className="relative space-y-5">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#dff2a2] text-emerald-950 shadow-lg shadow-black/10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#ffe5d1] text-emerald-950 shadow-lg shadow-black/10">
               <ShieldCheck size={24} aria-hidden="true" />
             </div>
             <p className="max-w-xs text-3xl font-semibold leading-tight tracking-tight">

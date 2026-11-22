@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/inter";
+import "@fontsource-variable/dm-sans";
+import "@fontsource-variable/fraunces";
 import "./globals.css";
 import "@/styles/shell.css";
 import "@/styles/navbar.css";
+import "@/styles/sarkarseva.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
@@ -29,7 +31,7 @@ export default async function RootLayout({
   const m = messages[locale];
   return (
     <html lang={locale}>
-      <body className="min-h-screen flex flex-col bg-[#f3e8bc] text-[#022c2b] selection:bg-[#035352] selection:text-white pb-16 md:pb-0">
+      <body className="min-h-screen flex flex-col bg-[#faf9f5] text-[#1a1a2e] selection:bg-[#a04100] selection:text-white pb-16 md:pb-0">
         <I18nProvider locale={locale} messages={m}>
           <AuthProvider>
             <SpeechProvider>
@@ -47,7 +49,7 @@ export default async function RootLayout({
                         </a>
                       </div>
                     )}
-                  <PageContainer ambientGlow>
+                  <PageContainer ambientGlow={false}>
                     <main id="main" className="container flex-1">
                       {children}
                     </main>

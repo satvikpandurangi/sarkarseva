@@ -31,11 +31,11 @@ export function OptionalProfileField({
         <div className="flex items-center justify-between">
           <label
             htmlFor={id}
-            className="block text-xs font-bold text-[#102A24]"
+            className="block text-xs font-bold text-[#1a1a2e]"
           >
             {m.fields.age}
           </label>
-          <span className="text-xs font-medium text-[#3D4B44]">
+          <span className="text-xs font-medium text-[#47464c]">
             Optional
           </span>
         </div>
@@ -60,11 +60,11 @@ export function OptionalProfileField({
         <div className="flex items-center justify-between">
           <label
             htmlFor={id}
-            className="block text-xs font-bold text-[#102A24]"
+            className="block text-xs font-bold text-[#1a1a2e]"
           >
             {m.fields.family_income_inr}
           </label>
-          <span className="text-xs font-medium text-[#3D4B44]">
+          <span className="text-xs font-medium text-[#47464c]">
             Optional
           </span>
         </div>
@@ -101,11 +101,11 @@ export function OptionalProfileField({
         <div className="flex items-center justify-between">
           <label
             htmlFor={id}
-            className="block text-xs font-bold text-[#102A24]"
+            className="block text-xs font-bold text-[#1a1a2e]"
           >
             {m.fields.category}
           </label>
-          <span className="text-xs font-medium text-[#3D4B44]">
+          <span className="text-xs font-medium text-[#47464c]">
             Optional
           </span>
         </div>
@@ -125,8 +125,8 @@ export function OptionalProfileField({
                     onClick={() => onChange(isSelected ? null : opt.value)}
                     className={`text-xs py-1.5 px-3 rounded-full font-medium transition-all ${
                       isSelected
-                        ? "bg-[#165541] text-white shadow-xs"
-                        : "bg-white/80 hover:bg-white text-[#102A24] border border-stone-200/90"
+                        ? "bg-[#a04100] text-white shadow-xs"
+                        : "bg-white/80 hover:bg-white text-[#1a1a2e] border border-stone-200/90"
                     }`}
                   >
                     {opt.label}
@@ -137,7 +137,7 @@ export function OptionalProfileField({
                 type="button"
                 disabled={disabled}
                 onClick={() => setCustomCategory(true)}
-                className="text-xs py-1.5 px-3 rounded-full font-medium text-[#165541] hover:underline underline-offset-2"
+                className="text-xs py-1.5 px-3 rounded-full font-medium text-[#a04100] hover:underline underline-offset-2"
               >
                 + Type custom
               </button>

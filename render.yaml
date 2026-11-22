@@ -1,16 +1,18 @@
 services:
   - type: web
-    name: yojana-saathi-api
+    name: sarkarseva-api
     runtime: python
     plan: free
     region: singapore
     branch: main
     rootDir: services/api
-    buildCommand: pip install .
-    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /health
+    buildCommand: pip install -r requirements.lock && pip install --no-deps .
+    startCommand: alembic upgrade head && python -m app.cli.prepare_catalogue && uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
+    healthCheckPath: /ready
     autoDeployTrigger: commit
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.14"
       - key: APP_ENV
         value: production
       - key: DATABASE_URL

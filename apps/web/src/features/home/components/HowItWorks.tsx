@@ -16,13 +16,13 @@ export async function HowItWorks() {
   return (
     <section id="how-it-works" className="my-14 sm:my-20 scroll-mt-24" aria-labelledby="how-title">
       <div className="max-w-2xl mb-8 sm:mb-10">
-        <p className="text-xs font-bold uppercase tracking-widest text-[#035352] mb-2">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#a04100] mb-2">
           {t.eyebrow}
         </p>
-        <h2 id="how-title" className="text-3xl sm:text-4xl font-extrabold text-[#022c2b] tracking-tight">
+        <h2 id="how-title" className="text-3xl sm:text-4xl font-extrabold text-[#1a1a2e] tracking-tight">
           {t.title}
         </h2>
-        <p className="text-[#3d5654] text-base mt-1.5">
+        <p className="text-[#47464c] text-base mt-1.5">
           {t.lead}
         </p>
       </div>
@@ -37,37 +37,37 @@ export async function HowItWorks() {
           >
             <div>
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="w-7 h-7 rounded-full bg-[#e9dca4] text-[#035352] text-xs font-black flex items-center justify-center">
+                <span className="w-7 h-7 rounded-full bg-[#fff3e8] text-[#a04100] text-xs font-black flex items-center justify-center">
                   1
                 </span>
-                <div className="w-8 h-8 rounded-lg bg-[#e9dca4]/60 text-[#035352] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#fff3e8]/60 text-[#a04100] flex items-center justify-center">
                   <MessageSquareText size={16} aria-hidden="true" />
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-[#022c2b] tracking-tight">
+              <h3 className="text-lg font-bold text-[#1a1a2e] tracking-tight">
                 {t.step1Title}
                 <span className="sr-only">{t.step1SrHint}</span>
               </h3>
-              <p className="text-[#3d5654] text-sm mt-2 leading-relaxed">
+              <p className="text-[#47464c] text-sm mt-2 leading-relaxed">
                 {t.step1Text}
               </p>
 
-              <div className="my-4 p-3 rounded-xl bg-[#f3e8bc] border border-[#022c2b]/06">
+              <div className="my-4 p-3 rounded-xl bg-[#faf9f5] border border-[#1a1a2e]/06">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-700 block mb-0.5">
                   {t.forExample}
                 </span>
-                <blockquote className="text-xs font-medium text-[#022c2b] italic line-clamp-2">
+                <blockquote className="text-xs font-medium text-[#1a1a2e] italic line-clamp-2">
                   “{m.profile.example}”
                 </blockquote>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#022c2b]/06 flex items-center justify-between">
-              <span className="text-[11px] font-bold text-[#035352]">{format(t.step, { n: "01" })}</span>
+            <div className="pt-3 border-t border-[#1a1a2e]/06 flex items-center justify-between">
+              <span className="text-[11px] font-bold text-[#a04100]">{format(t.step, { n: "01" })}</span>
               <Link
                 href="/discover"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#035352] hover:text-[#024241] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a04100] hover:text-[#823400] transition-colors"
               >
                 <span>{t.step1Link}</span>
                 <ArrowRight size={14} />
@@ -85,25 +85,25 @@ export async function HowItWorks() {
           >
             <div>
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="w-7 h-7 rounded-full bg-[#e9dca4] text-[#035352] text-xs font-black flex items-center justify-center">
+                <span className="w-7 h-7 rounded-full bg-[#fff3e8] text-[#a04100] text-xs font-black flex items-center justify-center">
                   2
                 </span>
-                <div className="w-8 h-8 rounded-lg bg-[#e9dca4]/60 text-[#035352] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#fff3e8]/60 text-[#a04100] flex items-center justify-center">
                   <ScanSearch size={16} aria-hidden="true" />
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-[#022c2b] tracking-tight">
+              <h3 className="text-lg font-bold text-[#1a1a2e] tracking-tight">
                 {t.step2Title}
               </h3>
-              <p className="text-[#3d5654] text-sm mt-2 leading-relaxed">
+              <p className="text-[#47464c] text-sm mt-2 leading-relaxed">
                 {t.step2Text}
               </p>
             </div>
 
-            <div className="pt-3 border-t border-[#022c2b]/06 flex items-center justify-between mt-6">
-              <span className="text-[11px] font-bold text-[#035352]">{format(t.step, { n: "02" })}</span>
-              <span className="text-[11px] font-medium text-[#3d5654]">{t.step2Tag}</span>
+            <div className="pt-3 border-t border-[#1a1a2e]/06 flex items-center justify-between mt-6">
+              <span className="text-[11px] font-bold text-[#a04100]">{format(t.step, { n: "02" })}</span>
+              <span className="text-[11px] font-medium text-[#47464c]">{t.step2Tag}</span>
             </div>
           </GlassCard>
         </li>
@@ -117,25 +117,25 @@ export async function HowItWorks() {
           >
             <div>
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="w-7 h-7 rounded-full bg-[#e9dca4] text-[#035352] text-xs font-black flex items-center justify-center">
+                <span className="w-7 h-7 rounded-full bg-[#fff3e8] text-[#a04100] text-xs font-black flex items-center justify-center">
                   3
                 </span>
-                <div className="w-8 h-8 rounded-lg bg-[#e9dca4]/60 text-[#035352] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#fff3e8]/60 text-[#a04100] flex items-center justify-center">
                   <ClipboardList size={16} aria-hidden="true" />
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-[#022c2b] tracking-tight">
+              <h3 className="text-lg font-bold text-[#1a1a2e] tracking-tight">
                 {t.step3Title}
               </h3>
-              <p className="text-[#3d5654] text-sm mt-2 leading-relaxed">
+              <p className="text-[#47464c] text-sm mt-2 leading-relaxed">
                 {t.step3Text}
               </p>
             </div>
 
-            <div className="pt-3 border-t border-[#022c2b]/06 flex items-center justify-between mt-6">
-              <span className="text-[11px] font-bold text-[#035352]">{format(t.step, { n: "03" })}</span>
-              <span className="text-[11px] font-medium text-[#3d5654]">{t.step3Tag}</span>
+            <div className="pt-3 border-t border-[#1a1a2e]/06 flex items-center justify-between mt-6">
+              <span className="text-[11px] font-bold text-[#a04100]">{format(t.step, { n: "03" })}</span>
+              <span className="text-[11px] font-medium text-[#47464c]">{t.step3Tag}</span>
             </div>
           </GlassCard>
         </li>

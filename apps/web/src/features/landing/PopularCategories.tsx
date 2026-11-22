@@ -54,16 +54,16 @@ export function PopularCategories() {
     <div className="my-14 sm:my-20">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <h2 id="categories-title" className="text-2xl sm:text-3xl font-extrabold text-[#022c2b] tracking-tight">
+          <h2 id="categories-title" className="text-2xl sm:text-3xl font-extrabold text-[#1a1a2e] tracking-tight">
             {t.title}
           </h2>
-          <p className="text-sm text-[#3d5654] mt-1">
+          <p className="text-sm text-[#47464c] mt-1">
             {t.lead}
           </p>
         </div>
         <Link
-          href="/discover#browse"
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#035352] hover:text-[#024241] transition-colors shrink-0"
+          href="/catalogue"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#a04100] hover:text-[#823400] transition-colors shrink-0"
         >
           <span>{t.viewAll}</span>
           <ArrowRight size={15} />
@@ -75,13 +75,13 @@ export function PopularCategories() {
         {items.map(({ value, icon: Icon, circleBg }) => (
           <Link
             key={value}
-            href={`/discover?category=${value}#browse`}
+            href={`/catalogue?q=${({ agriculture: "farmer", education: "education", women: "women", senior_citizen: "pension", entrepreneurship: "business", housing: "housing" })[value]}`}
             className="group block"
           >
             <GlassCard
               variant="standard"
               interactive
-              className="p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#035352]/30 transition-all flex items-center justify-between gap-2 h-full"
+              className="p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#a04100]/30 transition-all flex items-center justify-between gap-2 h-full"
             >
               <div className="flex items-center gap-2.5 min-w-0">
                 <div
@@ -90,17 +90,17 @@ export function PopularCategories() {
                   <Icon size={18} aria-hidden="true" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xs sm:text-sm font-bold text-[#022c2b] truncate group-hover:text-[#035352] transition-colors">
+                  <h3 className="text-xs sm:text-sm font-bold text-[#1a1a2e] truncate group-hover:text-[#a04100] transition-colors">
                     {m.categoryNames[value]}
                   </h3>
-                  <p className="text-[11px] text-[#3d5654] truncate">
+                  <p className="text-[11px] text-[#47464c] truncate">
                     {t.schemes}
                   </p>
                 </div>
               </div>
               <ArrowRight
                 size={14}
-                className="text-slate-400 group-hover:text-[#035352] group-hover:translate-x-0.5 transition-all shrink-0"
+                className="text-slate-400 group-hover:text-[#a04100] group-hover:translate-x-0.5 transition-all shrink-0"
                 aria-hidden="true"
               />
             </GlassCard>

@@ -80,7 +80,7 @@ export function Dashboard() {
       text: summary.current ? t.checkReady : t.checkLead,
       href: summary.active ? "/recommendations" : reviewHref,
       done: Boolean(summary.current),
-      action: summary.current ? t.viewChecks : t.checkStep,
+      action: summary.current ? t.viewChecks : t.checkSchemes,
       onClick: summary.active ? undefined : reviewProfile,
     },
     {
@@ -130,7 +130,7 @@ export function Dashboard() {
               <Bookmark size={18} aria-hidden="true" />
               {m.nav.saved}
             </a>
-            <Link href="/discover#browse">
+            <Link href="/catalogue">
               <Compass size={18} aria-hidden="true" />
               {m.common.exploreSchemes}
             </Link>

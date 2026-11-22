@@ -12,7 +12,7 @@ for (const width of [320, 375, 768, 1024, 1440]) {
       page.getByRole("heading", { name: "Your scheme journey, together." }),
     ).toBeVisible();
     await expect(page.locator(".dashboard-catalogue-list")).toBeVisible();
-    await expect(page.locator(".dashboard-stats")).toContainText("0 / 11");
+    await expect(page.locator(".dashboard-stats")).toContainText("0 / 12");
     await expect(page.locator(".dashboard-stats")).toContainText(
       "Confirm your profile to begin",
     );
@@ -54,7 +54,7 @@ test("dashboard connects profile review, scheme checks and official guidance", a
   );
   await expect(page.locator(".dashboard-profile dd").first()).toHaveText("24");
   await page
-    .getByRole("link", { name: "Check my schemes", exact: true })
+    .getByRole("link", { name: /^(Check my schemes|View checks)$/ })
     .click();
   await expect(
     page
@@ -138,7 +138,7 @@ test("dashboard removes stale matches after profile edits and preserves guest pr
   ).toHaveText("—");
   await page.reload({ waitUntil: "domcontentloaded" });
   await expect(page.locator(".dashboard-profile")).toContainText("Not started");
-  await expect(page.locator(".dashboard-stats")).toContainText("0 / 11");
+  await expect(page.locator(".dashboard-stats")).toContainText("0 / 12");
 });
 
 test("dashboard navigation works with keyboard and category filters", async ({
@@ -282,7 +282,7 @@ test("dashboard uses the pushed theme consistently across the user journey", asy
           getComputedStyle(document.body).backgroundColor,
         ];
       }),
-    ).toEqual(["#035352", "rgb(243, 232, 188)"]);
+    ).toEqual(["#a04100", "rgb(250, 249, 245)"]);
   }
 });
 
@@ -372,5 +372,5 @@ test("signed-in dashboard restores confirmed facts through the existing account 
   await expect(page.locator(".dashboard-profile")).not.toContainText(
     "Browser test citizen",
   );
-  await expect(page.locator(".dashboard-stats")).toContainText("0 / 11");
+  await expect(page.locator(".dashboard-stats")).toContainText("0 / 12");
 });

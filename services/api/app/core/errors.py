@@ -87,19 +87,6 @@ def install_error_handlers(app: FastAPI) -> None:
             message=message,
         )
 
-    @app.exception_handler(Exception)
-    async def unexpected_error_handler(request: Request, exc: Exception) -> JSONResponse:
-        logger.exception(
-            "Unhandled API error",
-            extra={"request_id": _request_id(request), "exception_type": type(exc).__name__},
-        )
-        return _error_response(
-            request=request,
-            status_code=500,
-            code="INTERNAL_ERROR",
-            message="An unexpected error occurred.",
-        )
-
 
 def install_request_id_middleware(app: FastAPI) -> None:
     """Attach an opaque correlation ID to requests and responses."""
@@ -108,6 +95,21 @@ def install_request_id_middleware(app: FastAPI) -> None:
     async def add_request_id(request: Request, call_next: RequestHandler) -> Response:
         supplied = request.headers.get("X-Request-ID", "").strip()
         request.state.request_id = supplied[:128] if supplied else str(uuid4())
-        response = await call_next(request)
+        try:
+            response = await call_next(request)
+        except Exception as exc:
+            # Catch before Starlette's outer ServerErrorMiddleware re-raises to
+            # Uvicorn, which would otherwise log the original private payload.
+            logger.error(
+                "Unhandled API error type=%s request_id=%s",
+                type(exc).__name__,
+                _request_id(request),
+            )
+            response = _error_response(
+                request=request,
+                status_code=500,
+                code="INTERNAL_ERROR",
+                message="An unexpected error occurred.",
+            )
         response.headers["X-Request-ID"] = request.state.request_id
         return response

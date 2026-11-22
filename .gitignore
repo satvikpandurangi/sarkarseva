@@ -13,4 +13,12 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+*.log
+*.sqlite3
+data/schemes/*.zip
+data/schemes/*.csv
+data/schemes/schemes_clean.json
+data/schemes/staging-review.json
+.next-mock/
+services/api/data/
 

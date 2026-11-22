@@ -3,7 +3,14 @@ import { test, expect } from "@playwright/test";
 test("navbar links, active route, CTA and keyboard mobile drawer", async ({
   page,
 }) => {
-  const destinations = ["Home", "Discover", "Matches", "Dashboard", "Saved"];
+  const destinations = [
+    "Home",
+    "Browse schemes",
+    "Discover",
+    "Matches",
+    "Dashboard",
+    "Saved",
+  ];
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/");
   const nav = page.getByRole("banner").getByRole("navigation", {
@@ -32,7 +39,7 @@ test("navbar links, active route, CTA and keyboard mobile drawer", async ({
   }
   await page
     .getByRole("banner")
-    .getByRole("link", { name: "yojana saathi home" })
+    .getByRole("link", { name: "SarkarSeva home" })
     .click();
   await expect(page).toHaveURL(/\/$/);
 
@@ -86,7 +93,14 @@ test("language selector translates the page and keeps working state", async ({
       .getByRole("banner")
       .getByRole("navigation", { name: "मुख्य नेविगेशन" })
       .getByRole("link"),
-  ).toHaveText(["होम", "खोजें", "मिलान", "डैशबोर्ड", "सहेजी गई"]);
+  ).toHaveText([
+    "होम",
+    "योजनाएँ देखें",
+    "खोजें",
+    "मिलान",
+    "डैशबोर्ड",
+    "सहेजी गई",
+  ]);
   // A refresh, not a reload: the description typed before switching is still there.
   await expect(page.locator("#profile-text")).toHaveValue(text);
   // Voice input follows the interface language until the person picks one.

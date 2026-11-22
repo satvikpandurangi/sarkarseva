@@ -1,0 +1,29 @@
+{
+  "checked_on": "2026-11-22",
+  "status": "local_implementation_verified_awaiting_hosted_release",
+  "backend": { "passed": 438, "skipped": 2, "ruff": "passed", "mypy": "passed" },
+  "frontend": { "unit_passed": 48, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed" },
+  "browser": {
+    "inherited_fixture_suite": { "passed": 44, "skipped": 1 },
+    "live_sqlite_integration": { "passed": 10, "skipped": 0 },
+    "optimized_production_frontend_with_live_sqlite_api": { "passed": 10, "skipped": 0 },
+    "public_accessibility_widths_px": [320, 1280],
+    "inherited_journey_widths_px": [320, 375, 390, 768, 1024, 1280, 1440]
+  },
+  "data": {
+    "csv_rows": 3400, "accepted_unique_records": 3397, "duplicate_rows": 3,
+    "verified_publication_records": 0, "education_primary_or_secondary_members": 833,
+    "source_version": 1, "source_published": "2025-07-13",
+    "source_sha256": "9a6c67185e1455e107630d40a8bcb34c394547adb042a7e580dab2e854734511"
+  },
+  "review": { "independent_reviews": 1, "critical_findings_fixed": 1, "important_findings_fixed": 5, "deferred_minors": 0 },
+  "not_verified": [
+    "Hosted PostgreSQL migrations and runtime",
+    "Vercel and Render deployment, HTTPS, CORS and operational behavior",
+    "Live Supabase authentication and account restoration",
+    "Live model, voice and email providers",
+    "Current official policy, eligibility, application links and deadlines for imported records"
+  ],
+  "remote_repositories_modified": false,
+  "deployment_created": false
+}

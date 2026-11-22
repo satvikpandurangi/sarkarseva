@@ -75,9 +75,6 @@ for (const width of [375, 1280]) {
     });
     await sources.screenshot({ path: `test-results/sources-${width}.png` });
     await categories.getByRole("link", { name: /^Agriculture/ }).click();
-    await expect(page).toHaveURL(/\/discover\?category=agriculture#browse$/);
-    await expect(
-      page.getByRole("heading", { name: "Contract Fixture Scheme" }),
-    ).toBeVisible();
+    await expect(page).toHaveURL(/\/catalogue\?q=farmer$/);
   });
 }

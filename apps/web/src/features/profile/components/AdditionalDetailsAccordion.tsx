@@ -35,13 +35,13 @@ export function AdditionalDetailsAccordion({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls="additional-details-content"
-        className="w-full py-4 px-5 flex items-center justify-between text-left hover:bg-stone-50/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#165541]"
+        className="w-full py-4 px-5 flex items-center justify-between text-left hover:bg-stone-50/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04100]"
       >
         <div className="space-y-0.5">
-          <span className="text-sm font-bold text-[#102A24] block">
+          <span className="text-sm font-bold text-[#1a1a2e] block">
             {t.accordionTitle}
           </span>
-          <span className="text-xs text-[#3D4B44] block">
+          <span className="text-xs text-[#47464c] block">
             {t.accordionSubtitle}
           </span>
 
@@ -70,7 +70,7 @@ export function AdditionalDetailsAccordion({
               <div key={field} className="space-y-1.5">
                 <label
                   htmlFor={id}
-                  className="block text-xs font-bold text-[#102A24]"
+                  className="block text-xs font-bold text-[#1a1a2e]"
                 >
                   {m.fields[field]}
                   <span className="ml-1.5 text-[11px] font-normal text-[#68736D]">
@@ -133,14 +133,14 @@ export function AdditionalDetailsAccordion({
 
                 {/* Privacy and context explanations for sensitive fields */}
                 {field === "social_category" && (
-                  <p className="flex items-start gap-1.5 text-xs text-[#3D4B44] font-medium leading-tight">
+                  <p className="flex items-start gap-1.5 text-xs text-[#47464c] font-medium leading-tight">
                     <Info size={13} className="shrink-0 mt-0.5 text-stone-600" aria-hidden="true" />
                     <span>{t.socialCategoryNote}</span>
                   </p>
                 )}
 
                 {field === "has_disability" && (
-                  <p className="flex items-start gap-1.5 text-xs text-[#3D4B44] font-medium leading-tight">
+                  <p className="flex items-start gap-1.5 text-xs text-[#47464c] font-medium leading-tight">
                     <Info size={13} className="shrink-0 mt-0.5 text-stone-600" aria-hidden="true" />
                     <span>{t.disabilityNote}</span>
                   </p>

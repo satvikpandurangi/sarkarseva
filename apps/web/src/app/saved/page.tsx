@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { getMessages } from "@/i18n/server";
 import { SavedSchemesList } from "@/features/saved-schemes/components/SavedSchemesList";
+import { SavedReferences } from "@/features/catalogue/SavedReferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getMessages();
@@ -24,6 +25,7 @@ export default async function SavedPage() {
         </p>
       </div>
 
+      <SavedReferences />
       <SavedSchemesList />
     </div>
   );

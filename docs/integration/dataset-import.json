@@ -1,0 +1,19 @@
+{
+  "dataset_url": "https://www.kaggle.com/datasets/jainamgada45/indian-government-schemes",
+  "source_sha256": "9a6c67185e1455e107630d40a8bcb34c394547adb042a7e580dab2e854734511",
+  "csv_rows": 3400,
+  "accepted_records": 3397,
+  "duplicate_rows": [
+    901,
+    902,
+    3273
+  ],
+  "rejected_rows": [],
+  "database_import": {
+    "parsed": 3397,
+    "inserted": 3397,
+    "skipped": 0
+  },
+  "verification_status": "unverified",
+  "published_records": 0
+}

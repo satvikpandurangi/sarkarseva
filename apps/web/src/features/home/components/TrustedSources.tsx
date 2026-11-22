@@ -2,11 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, ShieldCheck } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { getMessages } from "@/i18n/server";
+import { getLocale, getMessages } from "@/i18n/server";
+import { catalogueMessages } from "@/features/catalogue/messages";
 
 export async function TrustedSources() {
   const m = await getMessages();
   const t = m.home.sources;
+  const copy = catalogueMessages[await getLocale()];
   const sources = [
     { name: t.agriculture, url: "https://agricoop.gov.in/", type: "emblem" },
     { name: t.education, url: "https://www.education.gov.in/", type: "emblem" },
@@ -22,11 +24,11 @@ export async function TrustedSources() {
     <div className="my-14 sm:my-20">
       <section aria-label={t.title}>
         <div className="mb-8">
-          <h2 id="sources-title" className="text-2xl sm:text-3xl font-extrabold text-[#022c2b] tracking-tight">
+          <h2 id="sources-title" className="text-2xl sm:text-3xl font-extrabold text-[#1a1a2e] tracking-tight">
             {t.title}
           </h2>
-          <p className="text-sm text-[#3d5654] mt-1">
-            {t.lead}
+          <p className="text-sm text-[#47464c] mt-1">
+            {copy.sourceLead}
           </p>
         </div>
 
@@ -42,7 +44,7 @@ export async function TrustedSources() {
             <GlassCard
               variant="standard"
               interactive
-              className="p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#035352]/30 transition-all flex items-center justify-between gap-3 h-full"
+              className="p-4 sm:p-4.5 rounded-2xl bg-cream/90 border border-white/95 shadow-xs group-hover:border-[#a04100]/30 transition-all flex items-center justify-between gap-3 h-full"
             >
               <div className="flex items-center gap-3 min-w-0">
                 {type === "emblem" ? (
@@ -67,11 +69,11 @@ export async function TrustedSources() {
                   </div>
                 )}
                 <div className="min-w-0">
-                  <h3 className="text-xs sm:text-[13px] font-bold text-[#022c2b] leading-snug group-hover:text-[#035352] transition-colors line-clamp-2">
+                  <h3 className="text-xs sm:text-[13px] font-bold text-[#1a1a2e] leading-snug group-hover:text-[#a04100] transition-colors line-clamp-2">
                     {name}
                   </h3>
                   {subtitle && (
-                    <p className="text-[10px] text-[#3d5654] truncate mt-0.5">
+                    <p className="text-[10px] text-[#47464c] truncate mt-0.5">
                       {subtitle}
                     </p>
                   )}
@@ -79,7 +81,7 @@ export async function TrustedSources() {
               </div>
               <ExternalLink
                 size={14}
-                className="text-slate-400 group-hover:text-[#035352] transition-colors shrink-0"
+                className="text-slate-400 group-hover:text-[#a04100] transition-colors shrink-0"
                 aria-hidden="true"
               />
             </GlassCard>
@@ -89,13 +91,13 @@ export async function TrustedSources() {
       </section>
 
       {/* Bottom guidance callout strip */}
-      <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#e9dca4]/70 border border-[#d8c98a] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#fff3e8]/70 border border-[#e4dfda] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start sm:items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#035352]/12 text-[#035352] flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+          <div className="w-8 h-8 rounded-full bg-[#a04100]/12 text-[#a04100] flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
             <ShieldCheck size={18} aria-hidden="true" />
           </div>
           <div>
-            <p className="text-xs sm:text-sm font-bold text-[#022c2b]">
+            <p className="text-xs sm:text-sm font-bold text-[#1a1a2e]">
               {t.calloutTitle}
             </p>
             <p className="text-xs text-[#3D4741] mt-0.5">
@@ -105,7 +107,7 @@ export async function TrustedSources() {
         </div>
         <Link
           href="/help"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-cream hover:bg-slate-50 text-xs font-bold text-[#035352] border border-[#022c2b]/10 shadow-2xs shrink-0 self-start sm:self-auto transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-cream hover:bg-slate-50 text-xs font-bold text-[#a04100] border border-[#1a1a2e]/10 shadow-2xs shrink-0 self-start sm:self-auto transition-colors"
         >
           <span>{t.calloutLink}</span>
           <ArrowRight size={13} />

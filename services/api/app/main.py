@@ -10,6 +10,7 @@ from sqlalchemy import Engine
 
 from app.api.health import router as health_router
 from app.api.v1.admin import router as admin_router
+from app.api.v1.catalogue import router as catalogue_router
 from app.api.v1.guidance import router as guidance_router
 from app.api.v1.profiles import router as profiles_router
 from app.api.v1.saved import router as saved_router
@@ -64,6 +65,7 @@ def create_app(
     application.include_router(health_router)
     application.include_router(admin_router)
     application.include_router(schemes_router)
+    application.include_router(catalogue_router)
     application.include_router(guidance_router)
     application.include_router(profiles_router)
     application.include_router(saved_router)
