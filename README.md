@@ -7,7 +7,8 @@ requirements, save records and prepare document checklists. English, Hindi and
 Kannada navigation is available; original dataset records remain in English.
 
 **Live website:** [sarkarseva-v2.vercel.app](https://sarkarseva-v2.vercel.app).
-The public HTTPS release passed all ten hosted browser checks. See
+The v2.0.2 public HTTPS release passed all thirteen hosted browser checks and an
+additional real Groq extraction-to-matching journey. See
 [deployment status](docs/integration/deployment-state.json) for the deployed commits.
 
 **Imported records are unverified, from a July 2025 dataset.** They are discovery
@@ -54,10 +55,14 @@ database and populated reference catalogue. Full setup, tests and deployment:
 
 Core catalogue/search, manual profile entry, matching and checklists need no AI
 provider or authentication. Supabase Auth adds account profile restoration.
-Gemini/Sarvam add optional extraction/voice. Configure secrets only on the API,
+Groq extraction and Sarvam speech are connected and verified on the hosted API
+using synthetic English text and audio. Gemini remains an alternative extractor.
+Configure secrets only on the API,
 never in browser variables or committed files. Curator RAG stays protected; it is
-not a dependency of citizen search. Public provider routes require deployment
-rate limiting before paid provider keys are enabled.
+not a dependency of citizen search. Provider calls have per-process budgets
+(20 extraction and 30 speech requests per minute), not per-user quotas or a
+distributed limiter. Add shared abuse controls before scaling beyond one worker.
+Supabase account restoration and email delivery have not been verified live.
 
 ## Source projects and deployment status
 

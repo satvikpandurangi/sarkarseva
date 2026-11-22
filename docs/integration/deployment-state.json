@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-23",
   "supabase": {
     "organization_id": "jxkptunlcuubhoyxnezv",
     "project_id": "alsqodvrsefjlinstzth",
@@ -32,15 +32,22 @@
     "auto_sync": false,
     "service_created": true,
     "service_id": "srv-dc1goiivcj2c73ehqlf0",
-    "deployment_id": "dep-dc1goiqvcj2c73ehqm50",
+    "deployment_id": "dep-dc1hmbgs00ms738bfjcg",
     "status": "live",
-    "commit": "e612d539bcaf4fe20b675c842f8e98c4b409f462",
+    "commit": "c841229511b3fbb4d6b3b01511649541bf724958",
     "url": "https://sarkarseva-v2-api-s7ad.onrender.com",
     "approval": "user approved reviewed plan",
     "readiness_records": 3397,
     "cors_origin": "https://sarkarseva-v2.vercel.app",
     "untrusted_cors_origin_allowed": false,
-    "application_errors_in_release_window": 0
+    "application_errors_in_release_window": 0,
+    "error_log_window_start_utc": "2026-11-22T16:44:03Z",
+    "capabilities": { "speech": true, "profile_extraction": true },
+    "provider_verification": {
+      "groq_synthetic_profile": "validated age 20, state KA, review required",
+      "sarvam_english_synthetic_tts_stt": "230444-byte WAV and nonempty reviewed transcription",
+      "public_groq_browser_journey": "extraction, review, confirmation, preliminary matches, session deletion HTTP 204"
+    }
   },
   "vercel": {
     "team_id": "team_iusdRQvZGpU8vaSTpDOY3TVB",
@@ -52,16 +59,17 @@
     "framework": "nextjs",
     "git_connected": false,
     "public_deployment_created": true,
-    "deployment_id": "dpl_FjojALxqGeBmev6uyCqMDAuJzNv1",
+    "deployment_id": "dpl_MwDowqmbvMiP1FJaf3F7BScUiGEi",
     "status": "READY",
     "target": "production",
-    "commit": "56015bc4e155b4e16349f64603c5838d2663e459",
+    "commit": "c841229511b3fbb4d6b3b01511649541bf724958",
     "url": "https://sarkarseva-v2.vercel.app",
-    "build_duration_seconds": 59,
+    "build_duration_seconds": 49,
     "public_unauthenticated_http_status": 200,
     "temporary_verification_bypass_revoked": true,
     "runtime_errors_in_release_window": 0,
-    "hosted_browser_tests_passed": 10
+    "runtime_error_log_window_minutes": 30,
+    "hosted_browser_tests_passed": 13
   },
   "github": {
     "authenticated_user": "satvikpandurangi",

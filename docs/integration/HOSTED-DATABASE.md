@@ -60,7 +60,9 @@ checklists, profile matching and deletion, mobile layout and accessibility passe
 
 Continue source curation, dependency updates and release monitoring. An external
 uptime monitor and a backup-restore exercise were not configured by this release.
-Optional provider-backed authentication, voice and AI integrations remain disabled
-until configured and separately verified. CodeRabbit review was additionally
+Groq extraction and Sarvam TTS/STT are configured server-side and passed hosted
+checks using synthetic English text and audio on 23 November 2026. Public profile
+extraction, review, matching and deletion also passed in a real browser. Account
+authentication/restoration and email delivery remain unverified. CodeRabbit review was additionally
 requested; plugin 1.1.4 is installed and enabled, while CLI authentication is a
 separate pending check. No CodeRabbit review has run yet.

@@ -1,13 +1,14 @@
 {
-  "checked_on": "2026-11-22",
-  "status": "core_public_https_release_verified",
-  "backend": { "passed": 438, "skipped": 2, "ruff": "passed", "mypy": "passed" },
-  "frontend": { "unit_passed": 48, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed", "next_version": "16.4.6", "zod_version": "4.6.7", "npm_audit_findings": 0 },
+  "checked_on": "2026-11-23",
+  "status": "v2.0.2_public_https_and_english_providers_verified",
+  "backend": { "passed": 443, "skipped": 2, "ruff": "passed", "mypy": "passed", "nonfatal_test_client_deprecation_warnings": 1 },
+  "frontend": { "unit_passed": 52, "unit_skipped": 5, "lint": "passed", "typecheck": "passed", "production_build": "passed", "next_version": "16.4.6", "zod_version": "4.6.7", "npm_audit_findings": 0, "audit_checked_on": "2026-11-22" },
   "browser": {
     "inherited_fixture_suite": { "passed": 44, "skipped": 1 },
-    "live_sqlite_integration": { "passed": 10, "skipped": 0 },
+    "live_sqlite_integration": { "passed": 13, "skipped": 0, "checked_on": "2026-11-22" },
     "optimized_production_frontend_with_live_sqlite_api": { "passed": 10, "skipped": 0 },
-    "public_https_with_hosted_postgresql": { "passed": 10, "skipped": 0, "duration_seconds": 78 },
+    "public_https_with_hosted_postgresql": { "passed": 13, "skipped": 0, "reported_duration": "1.3m" },
+    "additional_live_groq_journey": "passed: extracted age/state, editable review, confirmation, preliminary matches, synthetic session deletion HTTP 204",
     "public_accessibility_widths_px": [320, 1280],
     "inherited_journey_widths_px": [320, 375, 390, 768, 1024, 1280, 1440]
   },
@@ -22,7 +23,8 @@
     "CodeRabbit review: plugin 1.1.4 installed/enabled; CLI 0.9.1 signed out; review not started",
     "External uptime monitoring, load testing and backup restore exercise",
     "Live Supabase authentication and account restoration",
-    "Live model, voice and email providers",
+    "Live email provider",
+    "Voice in every supported language and real microphone/device combinations (synthetic English hosted TTS/STT passed)",
     "Current official policy, eligibility, application links and deadlines for imported records"
   ],
   "remote_repositories_modified": true,

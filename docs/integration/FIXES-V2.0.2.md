@@ -38,7 +38,15 @@
 - Thirteen local browser checks passed, including catalogue discovery, unavailable
   voice, cancelling a synthetic stalled transcription, checklists, matching,
   session deletion, responsive layouts and accessibility.
-- Hosted deployment verification is recorded separately in `deployment-state.json`.
+- All thirteen hosted browser checks passed on 23 November 2026, including voice
+  cancellation and catalogue discovery. A separate actual Groq browser journey
+  passed extraction, editable review, confirmation, preliminary matching and
+  deletion of the synthetic profile session (HTTP 204).
+- Render deploy `dep-dc1hmbgs00ms738bfjcg` and Vercel production deploy
+  `dpl_MwDowqmbvMiP1FJaf3F7BScUiGEi` serve code commit `c841229`.
+- Fresh backend/frontend checks passed again before this release. Render error
+  logs since backend rollout and Vercel error logs in the checked 30-minute
+  release window returned no error records.
 
 ## Actual provider validation
 
@@ -49,10 +57,20 @@ Groq's model endpoint rejected Python's default User-Agent with HTTP 403 and
 succeeded with the explicit application User-Agent; the application now sets that
 header, covered by a regression. Do not place keys in chat, Git or `NEXT_PUBLIC_*`.
 
-Hosted verification follows merging only provider-specific server variables into
-the existing Render service. Public capability flags update at runtime; no
-frontend key is used. The live-deployment result is recorded separately from
-local provider tests in `deployment-state.json`.
+Only provider-specific server variables were merged into the existing Render
+service. Hosted Groq extraction validated age 20/state KA from synthetic text;
+hosted Sarvam generated a 230,444-byte WAV and returned a nonempty transcription
+requiring review. Exact frontend CORS was verified on these responses. Public
+capability flags report both services available; no frontend key is used.
+
+## Remaining limits
+
+Imported July 2025 records remain unverified. Matching is preliminary. Render's
+free plan can sleep. Provider budgets are process-local, not distributed or
+per-user quotas. Account restoration, email delivery, load testing and backup
+restoration remain unverified. English synthetic speech was checked live; this
+does not certify every supported language or device microphone. CodeRabbit is
+installed but signed out, so no CodeRabbit review is claimed.
 
 References: [Groq compatibility](https://console.groq.com/docs/openai),
 [Groq models](https://console.groq.com/docs/models),
